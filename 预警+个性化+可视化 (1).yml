@@ -1,0 +1,5584 @@
+app:
+  description: 个性化调试ing
+  icon: 🤖
+  icon_background: '#FFEAD5'
+  mode: advanced-chat
+  name: 预警+个性化+可视化
+  use_icon_as_answer_icon: false
+dependencies:
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: antv/visualization:0.2.0@798a255e7bf02e93b8a5717be235b833482be58daab1c64c79c954281da14b9c
+    version: null
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: hjlarry/database:0.0.6@534bc26cf5bc4ff6b5557457452287ccc71f00eef9378784c4f43ca49954ca2f
+    version: null
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/siliconflow:0.0.45@c3b4e788bdac202445fe0a1d82ff81fbc0f24f7ef3aaeef4785908d1d972fa84
+    version: null
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: spance/db_client_node:0.1.47@60965f21262129b75b2e01543190ab65021b75b55441532f77f88fcd7b71095d
+    version: null
+kind: app
+version: 0.6.0
+workflow:
+  conversation_variables:
+  - description: ''
+    id: 039101f1-1745-4215-ad2e-ac7fc28c4a49
+    name: budget
+    selector:
+    - conversation
+    - budget
+    value: 0
+    value_type: integer
+  environment_variables: []
+  features:
+    file_upload:
+      allowed_file_extensions:
+      - .JPG
+      - .JPEG
+      - .PNG
+      - .GIF
+      - .WEBP
+      - .SVG
+      allowed_file_types:
+      - image
+      allowed_file_upload_methods:
+      - remote_url
+      - local_file
+      enabled: true
+      fileUploadConfig:
+        attachment_image_file_size_limit: 2
+        audio_file_size_limit: 50
+        batch_count_limit: 5
+        file_size_limit: 15
+        file_upload_limit: 20
+        image_file_batch_limit: 10
+        image_file_size_limit: 10
+        single_chunk_attachment_limit: 10
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 3
+    opening_statement: '欢迎使用个人记账助手！我有以下功能：
+
+      📝 记账：直接输入消费内容，如“昨天吃饭30元”
+
+      🔍 查询：输入“本月花了多少钱”
+
+      💡 消费建议：输入“给我消费建议”
+
+      💰 预算设置：输入“设置本月预算3000元”'
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions:
+    - 你需要对本月的记账信息进行查询吗？
+    - 是否有设置本月预算？助手将为你实时计算消费并给出预警。
+    suggested_questions_after_answer:
+      enabled: true
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: start
+        targetType: question-classifier
+      id: 1780466131546-source-1780483226871-target
+      source: '1780466131546'
+      sourceHandle: source
+      target: '1780483226871'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: question-classifier
+        targetType: answer
+      id: 1780483226871-1780483339951-1780483393451-target
+      source: '1780483226871'
+      sourceHandle: '1780483339951'
+      target: '1780483393451'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: question-classifier
+        targetType: tool
+      id: 1780483226871-1-1780493063452-target
+      source: '1780483226871'
+      sourceHandle: '1'
+      target: '1780493063452'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: tool
+        targetType: llm
+      id: 1780493063452-source-1780493068775-target
+      source: '1780493063452'
+      sourceHandle: source
+      target: '1780493068775'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: llm
+        targetType: llm
+      id: 1780493068775-source-1780493106315-target
+      source: '1780493068775'
+      sourceHandle: source
+      target: '1780493106315'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1780493261305'
+        sourceType: iteration-start
+        targetType: tool
+      id: 1780493261305start-source-1780493275026-target
+      source: 1780493261305start
+      sourceHandle: source
+      target: '1780493275026'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: parameter-extractor
+        targetType: tool
+      id: 1780498042395-source-1780498344138-target
+      source: '1780498042395'
+      sourceHandle: source
+      target: '1780498344138'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: tool
+        targetType: llm
+      id: 1780498344138-source-1780498382636-target
+      selected: false
+      source: '1780498344138'
+      sourceHandle: source
+      target: '1780498382636'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: llm
+        targetType: answer
+      id: 1780498382636-source-1780485451333-target
+      source: '1780498382636'
+      sourceHandle: source
+      target: '1780485451333'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: llm
+        targetType: parameter-extractor
+      id: 1780497890124-source-1780498042395-target
+      source: '1780497890124'
+      sourceHandle: source
+      target: '1780498042395'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: question-classifier
+        targetType: tool
+      id: 1780483226871-2-1780578347684-target
+      source: '1780483226871'
+      sourceHandle: '2'
+      target: '1780578347684'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: question-classifier
+        targetType: tool
+      id: 1780483226871-1780483341139-1780579414606-target
+      source: '1780483226871'
+      sourceHandle: '1780483341139'
+      target: '1780579414606'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: tool
+        targetType: llm
+      id: 1780579414606-source-1780579390653-target
+      source: '1780579414606'
+      sourceHandle: source
+      target: '1780579390653'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: llm
+        targetType: tool
+      id: 1780579390653-source-1780580993790-target
+      source: '1780579390653'
+      sourceHandle: source
+      target: '1780580993790'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: iteration
+        targetType: llm
+      id: 1780493261305-source-1780582028718-target
+      source: '1780493261305'
+      sourceHandle: source
+      target: '1780582028718'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: tool
+        targetType: llm
+      id: 1780582694877-source-1780582871485-target
+      source: '1780582694877'
+      sourceHandle: source
+      target: '1780582871485'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: llm
+        targetType: answer
+      id: 1780582871485-source-1780493295595-target
+      source: '1780582871485'
+      sourceHandle: source
+      target: '1780493295595'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: llm
+        targetType: parameter-extractor
+      id: 1780662307787-source-1780662319706-target
+      source: '1780662307787'
+      sourceHandle: source
+      target: '1780662319706'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: parameter-extractor
+        targetType: tool
+      id: 1780662319706-source-1780662361749-target
+      source: '1780662319706'
+      sourceHandle: source
+      target: '1780662361749'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: tool
+        targetType: answer
+      id: 1780662361749-source-1780662424928-target
+      source: '1780662361749'
+      sourceHandle: source
+      target: '1780662424928'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: question-classifier
+        targetType: tool
+      id: 1780483226871-1780662273535-1780662637826-target
+      source: '1780483226871'
+      sourceHandle: '1780662273535'
+      target: '1780662637826'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: tool
+        targetType: llm
+      id: 1780662637826-source-1780662307787-target
+      source: '1780662637826'
+      sourceHandle: source
+      target: '1780662307787'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: tool
+        targetType: question-classifier
+      id: 1780578347684-source-1780735748979-target
+      source: '1780578347684'
+      sourceHandle: source
+      target: '1780735748979'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: question-classifier
+        targetType: llm
+      id: 1780735748979-2-1780795613899-target
+      source: '1780735748979'
+      sourceHandle: '2'
+      target: '1780795613899'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: llm
+        targetType: parameter-extractor
+      id: 1780795765141-source-1780795835770-target
+      source: '1780795765141'
+      sourceHandle: source
+      target: '1780795835770'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: parameter-extractor
+        targetType: tool
+      id: 1780795835770-source-1780795873465-target
+      source: '1780795835770'
+      sourceHandle: source
+      target: '1780795873465'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: tool
+        targetType: llm
+      id: 1780795873465-source-1780795933629-target
+      source: '1780795873465'
+      sourceHandle: source
+      target: '1780795933629'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: tool
+        targetType: llm
+      id: 1780795873465-source-1780795984656-target
+      source: '1780795873465'
+      sourceHandle: source
+      target: '1780795984656'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: llm
+        targetType: if-else
+      id: 1780795984656-source-1780796011412-target
+      source: '1780795984656'
+      sourceHandle: source
+      target: '1780796011412'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: if-else
+        targetType: llm
+      id: 1780796011412-df0f1759-9dd7-4cf8-839b-4f74668a66fd-1780796083180-target
+      source: '1780796011412'
+      sourceHandle: df0f1759-9dd7-4cf8-839b-4f74668a66fd
+      target: '1780796083180'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: if-else
+        targetType: llm
+      id: 1780796011412-true-1780796208460-target
+      source: '1780796011412'
+      sourceHandle: 'true'
+      target: '1780796208460'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: if-else
+        targetType: llm
+      id: 1780796011412-41025913-df6a-4cca-aa4d-df0c782751d7-1780796244870-target
+      source: '1780796011412'
+      sourceHandle: 41025913-df6a-4cca-aa4d-df0c782751d7
+      target: '1780796244870'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: llm
+        targetType: parameter-extractor
+      id: 1780796208460-source-1780796287769-target
+      source: '1780796208460'
+      sourceHandle: source
+      target: '1780796287769'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: llm
+        targetType: parameter-extractor
+      id: 1780796244870-source-1780796290780-target
+      source: '1780796244870'
+      sourceHandle: source
+      target: '1780796290780'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: llm
+        targetType: parameter-extractor
+      id: 1780796083180-source-1780796295250-target
+      source: '1780796083180'
+      sourceHandle: source
+      target: '1780796295250'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: parameter-extractor
+        targetType: tool
+      id: 1780796287769-source-1780796396738-target
+      source: '1780796287769'
+      sourceHandle: source
+      target: '1780796396738'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: parameter-extractor
+        targetType: tool
+      id: 1780796290780-source-1780796410274-target
+      source: '1780796290780'
+      sourceHandle: source
+      target: '1780796410274'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: parameter-extractor
+        targetType: tool
+      id: 1780796295250-source-1780796436327-target
+      source: '1780796295250'
+      sourceHandle: source
+      target: '1780796436327'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: llm
+        targetType: answer
+      id: 1780795933629-source-1780796553755-target
+      source: '1780795933629'
+      sourceHandle: source
+      target: '1780796553755'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: tool
+        targetType: answer
+      id: 1780796396738-source-1780796553755-target
+      source: '1780796396738'
+      sourceHandle: source
+      target: '1780796553755'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: tool
+        targetType: answer
+      id: 1780796410274-source-1780796553755-target
+      source: '1780796410274'
+      sourceHandle: source
+      target: '1780796553755'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: tool
+        targetType: answer
+      id: 1780796436327-source-1780796553755-target
+      source: '1780796436327'
+      sourceHandle: source
+      target: '1780796553755'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: llm
+        targetType: llm
+      id: 1780795613899-source-1780795765141-target
+      source: '1780795613899'
+      sourceHandle: source
+      target: '1780795765141'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: llm
+        targetType: parameter-extractor
+      id: 1780582028718-source-1780800754690-target
+      source: '1780582028718'
+      sourceHandle: source
+      target: '1780800754690'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: parameter-extractor
+        targetType: tool
+      id: 1780800754690-source-1780582694877-target
+      source: '1780800754690'
+      sourceHandle: source
+      target: '1780582694877'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: llm
+        targetType: parameter-extractor
+      id: 1780493106315-source-1780912338283-target
+      source: '1780493106315'
+      sourceHandle: source
+      target: '1780912338283'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: parameter-extractor
+        targetType: iteration
+      id: 1780912338283-source-1780493261305-target
+      source: '1780912338283'
+      sourceHandle: source
+      target: '1780493261305'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: tool
+        targetType: llm
+      id: 1780580993790-source-1780913258500-target
+      source: '1780580993790'
+      sourceHandle: source
+      target: '1780913258500'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: llm
+        targetType: answer
+      id: 1780913258500-source-1780488924774-target
+      source: '1780913258500'
+      sourceHandle: source
+      target: '1780488924774'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: question-classifier
+        targetType: tool
+      id: 1780735748979-1-1780916130781-target
+      source: '1780735748979'
+      sourceHandle: '1'
+      target: '1780916130781'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: tool
+        targetType: llm
+      id: 1780916130781-source-1780917179108-target
+      source: '1780916130781'
+      sourceHandle: source
+      target: '1780917179108'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: llm
+        targetType: llm
+      id: 1780917179108-source-1780497890124-target
+      source: '1780917179108'
+      sourceHandle: source
+      target: '1780497890124'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        selected: false
+        title: 用户输入
+        type: start
+        variables:
+        - allowed_file_extensions: []
+          allowed_file_types:
+          - image
+          allowed_file_upload_methods:
+          - local_file
+          - remote_url
+          default: ''
+          hint: ''
+          label: wenjian
+          options: []
+          placeholder: ''
+          required: false
+          type: file
+          variable: wenjian
+      height: 109
+      id: '1780466131546'
+      position:
+        x: -19.101309818746813
+        y: 466.06274952410615
+      positionAbsolute:
+        x: -19.101309818746813
+        y: 466.06274952410615
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        classes:
+        - id: '1'
+          name: 用户输入包含金额和消费/收入事项，如“吃饭30元”、“工资5000”。
+        - id: '2'
+          name: 用户询问消费统计或建议，包含“花了多少”、“上月”、“建议”、“统计”等关键词。
+        - id: '1780483339951'
+          name: 用户问如何使用，包含“帮助”、“怎么用”、“功能介绍”、“新手引导”。
+        - id: '1780483341139'
+          name: 用户要设置预算，包含“设置预算”、“本月预算”、“预算X元”。
+        - id: '1780662273535'
+          name: '用户需要查询当月消费明细账单，只查看逐条消费记录、不做金额汇总/预算分析；
+
+            关键词：账单、消费记录、消费明细、花销清单、列出本月开销
+
+            示例问句：我想看看这个月的账单、我想看本月消费记录、罗列这个月所有花钱明细、查本月每一笔消费'
+        instructions: ''
+        memory:
+          query_prompt_template: '{{#sys.query#}}
+
+
+            {{#sys.files#}}'
+          window:
+            enabled: true
+            size: 6
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: Pro/deepseek-ai/DeepSeek-R1
+          provider: langgenius/siliconflow/siliconflow
+        query_variable_selector:
+        - '1780466131546'
+        - sys.query
+        selected: false
+        title: 问题分类器
+        type: question-classifier
+        vision:
+          enabled: false
+      height: 284
+      id: '1780483226871'
+      position:
+        x: 338.9873736736357
+        y: 440.8486742468314
+      positionAbsolute:
+        x: 338.9873736736357
+        y: 440.8486742468314
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        answer: '欢迎使用个人记账助手！
+
+
+          📝 记账：直接输入消费内容，如“昨天吃饭30元”
+
+          🔍 查询：输入“本月花了多少钱”
+
+          💡 消费建议：输入“给我消费建议”
+
+          💰 预算设置：输入“设置本月预算3000元”'
+        selected: false
+        title: 直接回复
+        type: answer
+        variables: []
+      height: 164
+      id: '1780483393451'
+      position:
+        x: 699.2410737511325
+        y: 405.72597776953296
+      positionAbsolute:
+        x: 699.2410737511325
+        y: 405.72597776953296
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        answer: '{{#1780498382636.text#}}'
+        selected: false
+        title: 直接回复 3
+        type: answer
+        variables: []
+      height: 103
+      id: '1780485451333'
+      position:
+        x: 3556.181439481317
+        y: 231.74787310290952
+      positionAbsolute:
+        x: 3556.181439481317
+        y: 231.74787310290952
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        answer: '{{#1780913258500.text#}}'
+        selected: false
+        title: 直接回复 4
+        type: answer
+        variables: []
+      height: 103
+      id: '1780488924774'
+      position:
+        x: 1578.5902592037723
+        y: 534.1984984921276
+      positionAbsolute:
+        x: 1578.5902592037723
+        y: 534.1984984921276
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        is_team_authorization: true
+        paramSchemas:
+        - auto_generate: null
+          default: '%Y-%m-%d %H:%M:%S'
+          form: form
+          human_description:
+            en_US: Time format in strftime standard.
+            ja_JP: Time format in strftime standard.
+            pt_BR: Time format in strftime standard.
+            zh_Hans: strftime 标准的时间格式。
+          label:
+            en_US: Format
+            ja_JP: Format
+            pt_BR: Format
+            zh_Hans: 格式
+          llm_description: null
+          max: null
+          min: null
+          name: format
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: UTC
+          form: form
+          human_description:
+            en_US: Timezone
+            ja_JP: Timezone
+            pt_BR: Timezone
+            zh_Hans: 时区
+          label:
+            en_US: Timezone
+            ja_JP: Timezone
+            pt_BR: Timezone
+            zh_Hans: 时区
+          llm_description: null
+          max: null
+          min: null
+          name: timezone
+          options:
+          - icon: null
+            label:
+              en_US: UTC
+              ja_JP: UTC
+              pt_BR: UTC
+              zh_Hans: UTC
+            value: UTC
+          - icon: null
+            label:
+              en_US: America/New_York
+              ja_JP: America/New_York
+              pt_BR: America/New_York
+              zh_Hans: 美洲/纽约
+            value: America/New_York
+          - icon: null
+            label:
+              en_US: America/Los_Angeles
+              ja_JP: America/Los_Angeles
+              pt_BR: America/Los_Angeles
+              zh_Hans: 美洲/洛杉矶
+            value: America/Los_Angeles
+          - icon: null
+            label:
+              en_US: America/Chicago
+              ja_JP: America/Chicago
+              pt_BR: America/Chicago
+              zh_Hans: 美洲/芝加哥
+            value: America/Chicago
+          - icon: null
+            label:
+              en_US: America/Sao_Paulo
+              ja_JP: America/Sao_Paulo
+              pt_BR: América/São Paulo
+              zh_Hans: 美洲/圣保罗
+            value: America/Sao_Paulo
+          - icon: null
+            label:
+              en_US: Asia/Shanghai
+              ja_JP: Asia/Shanghai
+              pt_BR: Asia/Shanghai
+              zh_Hans: 亚洲/上海
+            value: Asia/Shanghai
+          - icon: null
+            label:
+              en_US: Asia/Ho_Chi_Minh
+              ja_JP: Asia/Ho_Chi_Minh
+              pt_BR: Ásia/Ho Chi Minh
+              zh_Hans: 亚洲/胡志明市
+            value: Asia/Ho_Chi_Minh
+          - icon: null
+            label:
+              en_US: Asia/Tokyo
+              ja_JP: Asia/Tokyo
+              pt_BR: Asia/Tokyo
+              zh_Hans: 亚洲/东京
+            value: Asia/Tokyo
+          - icon: null
+            label:
+              en_US: Asia/Dubai
+              ja_JP: Asia/Dubai
+              pt_BR: Asia/Dubai
+              zh_Hans: 亚洲/迪拜
+            value: Asia/Dubai
+          - icon: null
+            label:
+              en_US: Asia/Kolkata
+              ja_JP: Asia/Kolkata
+              pt_BR: Asia/Kolkata
+              zh_Hans: 亚洲/加尔各答
+            value: Asia/Kolkata
+          - icon: null
+            label:
+              en_US: Asia/Seoul
+              ja_JP: Asia/Seoul
+              pt_BR: Asia/Seoul
+              zh_Hans: 亚洲/首尔
+            value: Asia/Seoul
+          - icon: null
+            label:
+              en_US: Asia/Singapore
+              ja_JP: Asia/Singapore
+              pt_BR: Asia/Singapore
+              zh_Hans: 亚洲/新加坡
+            value: Asia/Singapore
+          - icon: null
+            label:
+              en_US: Europe/London
+              ja_JP: Europe/London
+              pt_BR: Europe/London
+              zh_Hans: 欧洲/伦敦
+            value: Europe/London
+          - icon: null
+            label:
+              en_US: Europe/Berlin
+              ja_JP: Europe/Berlin
+              pt_BR: Europe/Berlin
+              zh_Hans: 欧洲/柏林
+            value: Europe/Berlin
+          - icon: null
+            label:
+              en_US: Europe/Moscow
+              ja_JP: Europe/Moscow
+              pt_BR: Europe/Moscow
+              zh_Hans: 欧洲/莫斯科
+            value: Europe/Moscow
+          - icon: null
+            label:
+              en_US: Australia/Sydney
+              ja_JP: Australia/Sydney
+              pt_BR: Australia/Sydney
+              zh_Hans: 澳大利亚/悉尼
+            value: Australia/Sydney
+          - icon: null
+            label:
+              en_US: Pacific/Auckland
+              ja_JP: Pacific/Auckland
+              pt_BR: Pacific/Auckland
+              zh_Hans: 太平洋/奥克兰
+            value: Pacific/Auckland
+          - icon: null
+            label:
+              en_US: Africa/Cairo
+              ja_JP: Africa/Cairo
+              pt_BR: Africa/Cairo
+              zh_Hans: 非洲/开罗
+            value: Africa/Cairo
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: select
+        params:
+          format: ''
+          timezone: ''
+        plugin_id: null
+        plugin_unique_identifier: ''
+        provider_icon: /console/api/workspaces/current/tool-provider/builtin/time/icon
+        provider_id: time
+        provider_name: time
+        provider_type: builtin
+        selected: false
+        title: 获取当前时间
+        tool_configurations:
+          format:
+            type: mixed
+            value: '%Y-%m-%d %H:%M:%S'
+          timezone:
+            type: constant
+            value: Asia/Shanghai
+        tool_description: 一个用于获取当前时间的工具。
+        tool_label: 获取当前时间
+        tool_name: current_time
+        tool_node_version: '2'
+        tool_parameters: {}
+        type: tool
+      height: 114
+      id: '1780493063452'
+      position:
+        x: 675.3641432238619
+        y: 42.29423065793972
+      positionAbsolute:
+        x: 675.3641432238619
+        y: 42.29423065793972
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - '1780466131546'
+          - wenjian
+        model:
+          completion_params:
+            enable_thinking: false
+            temperature: 0.5
+          mode: chat
+          name: Pro/moonshotai/Kimi-K2.5
+          provider: langgenius/siliconflow/siliconflow
+        prompt_template:
+        - id: d65a4dd7-95b5-4efe-9dfb-6494741a4656
+          role: system
+          text: "你是个人记账助手，严格遵守以下规则，基于用户输入{{#sys.query#}}处理，仅输出指定格式内容，无任何其他文字：\n输入解析：提取输入中的金额、时间、事项、收支类型（支出/收入）。\n\
+            分类规则：仅使用预设分类（支出：餐饮饮品、通勤交通、购物消费、娱乐休闲、房租水电、学习医疗、人情往来；收入：工资、兼职、红包、理财收益），不自创。\n\
+            时间规则：\n今天时间为{{#1780493063452.text#}}，格式yyyy-MM-dd。\n1. 明确相对时间（本周X、上周X、昨天、前天等），精准换算为对应yyyy-MM-dd格式日期，此类场景备注必须留空；\n\
+            \   示例：当前2026-06-07，上周三 = 2026-05-28，本周三 = 2026-06-04\n2. 无时间则默认今天；\n\
+            3. 模糊时间（前几天、最近几天）归为“系统日期-2天”，备注“模糊时间，按系统日期-2天记录”。\n输出格式：严格按以下格式输出，每条记录一行，无多余内容：\n\
+            日期 | 收支类型 | 分类 | 事项 | 金额（元）| 备注；\n防重复规则：仅根据输入中实际存在的支出/收入数量输出，不重复、不编造、不遗漏。\n\
+            删冗规则：去除所有解释、示例、问候等不必要语句。\n**防重复铁律**：\n   - ❌ 禁止输出 2 条及以上。\n   - ❌ 禁止解释、示例、问候。\n\
+            \   - ❌ 禁止联想其他记录。\n只管单次对话框里的内容\n   - ✅ 输入只有 1 条，输出就只有 1 条。"
+        selected: false
+        title: LLM 3
+        type: llm
+        vision:
+          configs:
+            detail: high
+            variable_selector:
+            - '1780466131546'
+            - wenjian
+          enabled: true
+      height: 88
+      id: '1780493068775'
+      position:
+        x: 976.120303463391
+        y: 4.187153620031751
+      positionAbsolute:
+        x: 976.120303463391
+        y: 4.187153620031751
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - '1780493068775'
+          - text
+        model:
+          completion_params:
+            enable_thinking: false
+          mode: chat
+          name: Pro/moonshotai/Kimi-K2.5
+          provider: langgenius/siliconflow/siliconflow
+        prompt_template:
+        - id: 640f9f21-0ff0-4ff3-bf10-d1726e6522af
+          role: system
+          text: '你是个人记账助手，基于用户输入 {{#sys.query#}} 填入生成标准 可直接进行PostgreSQL 的INSERT 语句。只输出一行纯SQL正文，严禁```sql、```、换行注释、多余文字、代码块标记；不要任何markdown格式。
+
+            输入信息{{#1780493068775.text#}}带|符号，将字段分开
+
+            【数据库表结构】
+
+            表名:public.expenses
+
+            字段（必须严格使用以下名称）：
+
+            id：用户ID（VARCHAR，必填）{{#sys.user_id#}}
+
+            date：交易日期（DATE，格式 yyyy-MM-DD）
+
+            type：收支类型（支出/收入，必填）
+
+            category：分类（仅限：餐饮饮品、通勤交通、购物消费、娱乐休闲、房租水电、学习医疗、人情往来、工资、兼职、红包、理财收益）
+
+            item：具体花钱的地方，比如吃饭、奶茶、学费等
+
+            amount：金额（DECIMAL(10,2)，数字，不含符号）
+
+            remark：备注（TEXT，可为空）
+
+            【生成规则】
+
+            单条插入：严禁批量插入（VALUES (...), (...)），每次仅生成 一条​ INSERT。
+
+            字段顺序：严格按 (id, date, type, category, item,amount, remark)排列。
+
+            时间处理：
+
+            明确日期：直接使用（如 2026-06-01）。
+
+            模糊时间（如“前天”）：按 系统日期-2天推算，并在 note中备注“模糊时间，按系统日期-2天记录”。
+
+            分类校验：分类不在预设列表中时，标记为 其他，并备注“未识别分类：XXX”。
+
+            空值处理：无备注时写 NULL，不加引号。
+
+            【输出要求】
+
+            最后根据{{#1780493068775.text#}}内容生成可直接使用的SQL语句文本'
+        selected: false
+        title: LLM 4
+        type: llm
+        vision:
+          enabled: false
+      height: 88
+      id: '1780493106315'
+      position:
+        x: 1245.7338222981173
+        y: -12.81424737811247
+      positionAbsolute:
+        x: 1245.7338222981173
+        y: -12.81424737811247
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        error_handle_mode: terminated
+        flatten_output: true
+        is_parallel: false
+        iterator_input_type: array[string]
+        iterator_selector:
+        - '1780912338283'
+        - sql
+        output_selector:
+        - '1780493275026'
+        - text
+        output_type: array[string]
+        parallel_nums: 10
+        selected: false
+        start_node_id: 1780493261305start
+        title: 迭代
+        type: iteration
+        width: 385
+      height: 146
+      id: '1780493261305'
+      position:
+        x: 1854.4248857309717
+        y: -12.81424737811247
+      positionAbsolute:
+        x: 1854.4248857309717
+        y: -12.81424737811247
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 385
+      zIndex: 1
+    - data:
+        desc: ''
+        isInIteration: true
+        selected: false
+        title: ''
+        type: iteration-start
+      draggable: false
+      height: 48
+      id: 1780493261305start
+      parentId: '1780493261305'
+      position:
+        x: 24
+        y: 68
+      positionAbsolute:
+        x: 1878.4248857309717
+        y: 55.18575262188753
+      selectable: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom-iteration-start
+      width: 44
+      zIndex: 1002
+    - data:
+        isInIteration: true
+        isInLoop: false
+        is_team_authorization: true
+        iteration_id: '1780493261305'
+        paramSchemas:
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: The SQL query to execute (allow literal arg, or `$arg0~N` as parameters)
+            ja_JP: The SQL query to execute (allow literal arg, or `$arg0~N` as parameters)
+            pt_BR: The SQL query to execute (allow literal arg, or `$arg0~N` as parameters)
+            zh_Hans: 要执行的SQL查询（参数使用变量`$arg0~N`表示，或使用字面值）
+          label:
+            en_US: SQL Query
+            ja_JP: SQL Query
+            pt_BR: SQL Query
+            zh_Hans: SQL查询
+          llm_description: ''
+          max: null
+          min: null
+          name: query
+          options: []
+          placeholder: null
+          precision: null
+          required: true
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: Enter the parameter corresponding to the SQL variables.
+            ja_JP: Enter the parameter corresponding to the SQL variables.
+            pt_BR: Enter the parameter corresponding to the SQL variables.
+            zh_Hans: 输入变量对应的参数。
+          label:
+            en_US: arg0
+            ja_JP: arg0
+            pt_BR: arg0
+            zh_Hans: 参数0
+          llm_description: ''
+          max: null
+          min: null
+          name: arg0
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: Enter the parameter corresponding to the SQL variables.
+            ja_JP: Enter the parameter corresponding to the SQL variables.
+            pt_BR: Enter the parameter corresponding to the SQL variables.
+            zh_Hans: 输入变量对应的参数。
+          label:
+            en_US: arg1
+            ja_JP: arg1
+            pt_BR: arg1
+            zh_Hans: 参数1
+          llm_description: ''
+          max: null
+          min: null
+          name: arg1
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: Enter the parameter corresponding to the SQL variables.
+            ja_JP: Enter the parameter corresponding to the SQL variables.
+            pt_BR: Enter the parameter corresponding to the SQL variables.
+            zh_Hans: 输入变量对应的参数。
+          label:
+            en_US: arg2
+            ja_JP: arg2
+            pt_BR: arg2
+            zh_Hans: 参数2
+          llm_description: ''
+          max: null
+          min: null
+          name: arg2
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: Enter the parameter corresponding to the SQL variables.
+            ja_JP: Enter the parameter corresponding to the SQL variables.
+            pt_BR: Enter the parameter corresponding to the SQL variables.
+            zh_Hans: 输入变量对应的参数。
+          label:
+            en_US: arg3
+            ja_JP: arg3
+            pt_BR: arg3
+            zh_Hans: 参数3
+          llm_description: ''
+          max: null
+          min: null
+          name: arg3
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: Enter the parameter corresponding to the SQL variables.
+            ja_JP: Enter the parameter corresponding to the SQL variables.
+            pt_BR: Enter the parameter corresponding to the SQL variables.
+            zh_Hans: 输入变量对应的参数。
+          label:
+            en_US: arg4
+            ja_JP: arg4
+            pt_BR: arg4
+            zh_Hans: 参数4
+          llm_description: ''
+          max: null
+          min: null
+          name: arg4
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: string
+        params:
+          arg0: ''
+          arg1: ''
+          arg2: ''
+          arg3: ''
+          arg4: ''
+          query: ''
+        plugin_id: spance/db_client_node
+        plugin_unique_identifier: spance/db_client_node:0.1.47@60965f21262129b75b2e01543190ab65021b75b55441532f77f88fcd7b71095d
+        provider_icon: /console/api/workspaces/current/plugin/icon?tenant_id=0594a5c7-c163-4ece-98cc-be76861287ba&filename=6b7847477266026620c1046288e6674d42cfb55ccca6335d26475489ade16071.svg
+        provider_id: spance/db_client_node/db_client_node
+        provider_name: spance/db_client_node/db_client_node
+        provider_type: builtin
+        selected: false
+        title: PostgreSQL 客户端(5)
+        tool_configurations: {}
+        tool_description: 读写PostgreSQL客户端，最多5个参数。
+        tool_label: PostgreSQL 客户端(5)
+        tool_name: postgres_node_5
+        tool_node_version: '2'
+        tool_parameters:
+          arg0:
+            type: mixed
+            value: null
+          arg1:
+            type: mixed
+            value: null
+          arg2:
+            type: mixed
+            value: null
+          arg3:
+            type: mixed
+            value: null
+          arg4:
+            type: mixed
+            value: null
+          query:
+            type: mixed
+            value: '{{#1780493261305.item#}}'
+        type: tool
+      height: 52
+      id: '1780493275026'
+      parentId: '1780493261305'
+      position:
+        x: 125.79661827583914
+        y: 65
+      positionAbsolute:
+        x: 1980.2215040068108
+        y: 52.18575262188753
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+      zIndex: 1002
+    - data:
+        answer: '{{#1780582871485.text#}}'
+        selected: false
+        title: 直接回复 5
+        type: answer
+        variables: []
+      height: 103
+      id: '1780493295595'
+      position:
+        x: 3966.0886308150916
+        y: 31.90512080136199
+      positionAbsolute:
+        x: 3966.0886308150916
+        y: 31.90512080136199
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - '1780917179108'
+          - text
+        model:
+          completion_params: {}
+          mode: chat
+          name: Pro/moonshotai/Kimi-K2.5
+          provider: langgenius/siliconflow/siliconflow
+        prompt_template:
+        - id: e7e3e1de-dbb5-40ec-919f-9e94cbb0761a
+          role: system
+          text: "你是一个专门生成PostgreSQL语句的助手。\n根据{{#1780917179108.text#}}中的生成sql语句\n查询类型：{{query_type}}\n\
+            目标月份：{{target_months}}\n表名：public.bill\n\n规则：\n1. 只输出一条SQL。\n2. 查询字段：date,\
+            \ type, item, amount, category, bill_month, month_budget。\n3. 统计支出必须使用：type='支出'。\n\
+            4. 月份判断必须使用：TO_CHAR(date, 'YYYY-MM')。\n5. 绝对不能添加任何 WHERE 过滤条件，不能按 category\
+            \ 过滤，不能按 item 过滤。\n6. 如果是对比模式：\n   生成 month1_spent 和 month2_spent。\n7.\
+            \ 如果是单月模式：\n   生成 total_spent 和 effective_budget。\n8. 预算字段名称：effective_budget。\n\
+            9. 所有金额使用标量子查询。\n10. 只输出纯净SQL。"
+        selected: false
+        title: LLM 5
+        type: llm
+        vision:
+          enabled: false
+      height: 88
+      id: '1780497890124'
+      position:
+        x: 2090.076148173811
+        y: 291.97798099478086
+      positionAbsolute:
+        x: 2090.076148173811
+        y: 291.97798099478086
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        instruction: '将{{#1780497890124.text#}}转化为文本，注意换行符要进行换行输出，还有要去除分号
+
+          注意检查数组中的每一个是否都能直接在数据库使用该SQL语句'
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: Pro/moonshotai/Kimi-K2.5
+          provider: langgenius/siliconflow/siliconflow
+        parameters:
+        - description: '11'
+          name: daochu
+          required: false
+          type: string
+        query:
+        - '1780497890124'
+        - text
+        reasoning_mode: prompt
+        selected: false
+        title: 参数提取器 2
+        type: parameter-extractor
+        vision:
+          enabled: false
+      height: 88
+      id: '1780498042395'
+      position:
+        x: 2349.8711261413764
+        y: 273.2193094295265
+      positionAbsolute:
+        x: 2349.8711261413764
+        y: 273.2193094295265
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        is_team_authorization: true
+        paramSchemas:
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: The SQL query string.
+            ja_JP: The SQL query string.
+            pt_BR: The SQL query string.
+            zh_Hans: SQL 查询语句。
+          label:
+            en_US: SQL Query
+            ja_JP: SQL Query
+            pt_BR: SQL Query
+            zh_Hans: SQL 查询语句
+          llm_description: The SQL query string.
+          max: null
+          min: null
+          name: query
+          options: []
+          placeholder: null
+          precision: null
+          required: true
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: Optional, Filling in this field will overwrite the database connection
+              entered during authorization.
+            ja_JP: Optional, Filling in this field will overwrite the database connection
+              entered during authorization.
+            pt_BR: Optional, Filling in this field will overwrite the database connection
+              entered during authorization.
+            zh_Hans: 选填，填写后将覆盖授权时填写的数据库连接。
+          label:
+            en_US: DB URI
+            ja_JP: DB URI
+            pt_BR: DB URI
+            zh_Hans: DB URI
+          llm_description: ''
+          max: null
+          min: null
+          name: db_uri
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: json
+          form: form
+          human_description:
+            en_US: Choose the output format.
+            ja_JP: Choose the output format.
+            pt_BR: Choose the output format.
+            zh_Hans: 选择输出格式。
+          label:
+            en_US: Output format
+            ja_JP: Output format
+            pt_BR: Output format
+            zh_Hans: 输出格式
+          llm_description: ''
+          max: null
+          min: null
+          name: format
+          options:
+          - icon: ''
+            label:
+              en_US: JSON
+              ja_JP: JSON
+              pt_BR: JSON
+              zh_Hans: JSON
+            value: json
+          - icon: ''
+            label:
+              en_US: CSV
+              ja_JP: CSV
+              pt_BR: CSV
+              zh_Hans: CSV
+            value: csv
+          - icon: ''
+            label:
+              en_US: YAML
+              ja_JP: YAML
+              pt_BR: YAML
+              zh_Hans: YAML
+            value: yaml
+          - icon: ''
+            label:
+              en_US: Markdown
+              ja_JP: Markdown
+              pt_BR: Markdown
+              zh_Hans: Markdown
+            value: md
+          - icon: ''
+            label:
+              en_US: Excel
+              ja_JP: Excel
+              pt_BR: Excel
+              zh_Hans: Excel
+            value: xlsx
+          - icon: ''
+            label:
+              en_US: HTML
+              ja_JP: HTML
+              pt_BR: HTML
+              zh_Hans: HTML
+            value: html
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: select
+        - auto_generate: null
+          default: null
+          form: form
+          human_description:
+            en_US: 'Optional. For example {"connect_args": {"ssl": {"ca": "/path/to/ca.pem"}}}
+
+              More connection options can be found at https://docs.sqlalchemy.org/en/20/core/engines.html#sqlalchemy.create_engine
+
+              '
+            ja_JP: 'Optional. For example {"connect_args": {"ssl": {"ca": "/path/to/ca.pem"}}}
+
+              More connection options can be found at https://docs.sqlalchemy.org/en/20/core/engines.html#sqlalchemy.create_engine
+
+              '
+            pt_BR: 'Optional. For example {"connect_args": {"ssl": {"ca": "/path/to/ca.pem"}}}
+
+              More connection options can be found at https://docs.sqlalchemy.org/en/20/core/engines.html#sqlalchemy.create_engine
+
+              '
+            zh_Hans: '选填项。例如 {"connect_args": {"ssl": {"ca": "/path/to/ca.pem"}}}
+
+              更多连接选项可参考 https://docs.sqlalchemy.org/en/20/core/engines.html#sqlalchemy.create_engine
+
+              '
+          label:
+            en_US: DB Config Options
+            ja_JP: DB Config Options
+            pt_BR: DB Config Options
+            zh_Hans: 数据库连接配置选项
+          llm_description: ''
+          max: null
+          min: null
+          name: config_options
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: string
+        params:
+          config_options: ''
+          db_uri: ''
+          format: ''
+          query: ''
+        plugin_id: hjlarry/database
+        plugin_unique_identifier: hjlarry/database:0.0.6@534bc26cf5bc4ff6b5557457452287ccc71f00eef9378784c4f43ca49954ca2f
+        provider_icon: /console/api/workspaces/current/plugin/icon?tenant_id=58e291a1-822b-41ce-b156-256a267a8e77&filename=65d2d7404efb4952bb715a35ae79ccce92e70b820fd6cdb74e9acc58a505f7cf.svg
+        provider_id: hjlarry/database/database
+        provider_name: hjlarry/database/database
+        provider_type: builtin
+        selected: false
+        title: SQL Execute
+        tool_configurations:
+          config_options:
+            type: mixed
+            value: null
+          format:
+            type: constant
+            value: md
+        tool_description: 此工具用于在已存在的数据库中执行 SQL 查询。
+        tool_label: SQL Execute
+        tool_name: sql_execute
+        tool_node_version: '2'
+        tool_parameters:
+          db_uri:
+            type: mixed
+            value: null
+          query:
+            type: mixed
+            value: '{{#1780497890124.text#}}'
+        type: tool
+      height: 114
+      id: '1780498344138'
+      position:
+        x: 2738.4325721612117
+        y: 296.705847709611
+      positionAbsolute:
+        x: 2738.4325721612117
+        y: 296.705847709611
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - '1780498344138'
+          - text
+        model:
+          completion_params: {}
+          mode: chat
+          name: Pro/moonshotai/Kimi-K2.5
+          provider: langgenius/siliconflow/siliconflow
+        prompt_template:
+        - id: ce427e39-1b4f-4013-820c-813a0f0a7875
+          role: system
+          text: "你是专属个人记账理财顾问，结合用户问题、账单明细与预算数据，生成个性化消费建议。\n用户问题：{{#sys.query#}}\n\
+            账单数据：{{#1780498344138.text#}}\n\n【账单字段说明】\ndate：消费日期\ntype：收入/支出\ncategory：消费分类\n\
+            item：具体项目\namount：金额\neffective_budget：本月预算\ntotal_spent：单月场景下，本月总支出\n\
+            month1_spent/month2_spent：双月对比场景下，依次为上月、本月总支出\n\n规则：\n1. 先判断数据类型与用户诉求，灵活作答：\n\
+            \   - 询问预算、花费、剩余额度：开头写明本月预算、已支出、剩余金额；\n   - 询问两个月消费对比：读取month1_spent、month2_spent，先说明两月总额，再分析差异；\n\
+            \   - 仅索要通用省钱建议、专项品类管控、区分刚需/非刚需、下月预算调整：按需分析，不强行做跨月对比。\n2. 点明高开销品类，结合消费场景分析原因。\n\
+            3. 给出简单可落地的控支、省钱方案，贴合日常使用。\n4. 语言口语自然，不堆砌明细、不做表格、不输出SQL，无额外内容。"
+        selected: false
+        title: LLM 6
+        type: llm
+        vision:
+          enabled: false
+      height: 88
+      id: '1780498382636'
+      position:
+        x: 3148.570193287144
+        y: 330.7152391989222
+      positionAbsolute:
+        x: 3148.570193287144
+        y: 330.7152391989222
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        is_team_authorization: true
+        paramSchemas:
+        - auto_generate: null
+          default: '%Y-%m-%d %H:%M:%S'
+          form: form
+          human_description:
+            en_US: Time format in strftime standard.
+            ja_JP: Time format in strftime standard.
+            pt_BR: Time format in strftime standard.
+            zh_Hans: strftime 标准的时间格式。
+          label:
+            en_US: Format
+            ja_JP: Format
+            pt_BR: Format
+            zh_Hans: 格式
+          llm_description: null
+          max: null
+          min: null
+          name: format
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: UTC
+          form: form
+          human_description:
+            en_US: Timezone
+            ja_JP: Timezone
+            pt_BR: Timezone
+            zh_Hans: 时区
+          label:
+            en_US: Timezone
+            ja_JP: Timezone
+            pt_BR: Timezone
+            zh_Hans: 时区
+          llm_description: null
+          max: null
+          min: null
+          name: timezone
+          options:
+          - icon: null
+            label:
+              en_US: UTC
+              ja_JP: UTC
+              pt_BR: UTC
+              zh_Hans: UTC
+            value: UTC
+          - icon: null
+            label:
+              en_US: America/New_York
+              ja_JP: America/New_York
+              pt_BR: America/New_York
+              zh_Hans: 美洲/纽约
+            value: America/New_York
+          - icon: null
+            label:
+              en_US: America/Los_Angeles
+              ja_JP: America/Los_Angeles
+              pt_BR: America/Los_Angeles
+              zh_Hans: 美洲/洛杉矶
+            value: America/Los_Angeles
+          - icon: null
+            label:
+              en_US: America/Chicago
+              ja_JP: America/Chicago
+              pt_BR: America/Chicago
+              zh_Hans: 美洲/芝加哥
+            value: America/Chicago
+          - icon: null
+            label:
+              en_US: America/Sao_Paulo
+              ja_JP: America/Sao_Paulo
+              pt_BR: América/São Paulo
+              zh_Hans: 美洲/圣保罗
+            value: America/Sao_Paulo
+          - icon: null
+            label:
+              en_US: Asia/Shanghai
+              ja_JP: Asia/Shanghai
+              pt_BR: Asia/Shanghai
+              zh_Hans: 亚洲/上海
+            value: Asia/Shanghai
+          - icon: null
+            label:
+              en_US: Asia/Ho_Chi_Minh
+              ja_JP: Asia/Ho_Chi_Minh
+              pt_BR: Ásia/Ho Chi Minh
+              zh_Hans: 亚洲/胡志明市
+            value: Asia/Ho_Chi_Minh
+          - icon: null
+            label:
+              en_US: Asia/Tokyo
+              ja_JP: Asia/Tokyo
+              pt_BR: Asia/Tokyo
+              zh_Hans: 亚洲/东京
+            value: Asia/Tokyo
+          - icon: null
+            label:
+              en_US: Asia/Dubai
+              ja_JP: Asia/Dubai
+              pt_BR: Asia/Dubai
+              zh_Hans: 亚洲/迪拜
+            value: Asia/Dubai
+          - icon: null
+            label:
+              en_US: Asia/Kolkata
+              ja_JP: Asia/Kolkata
+              pt_BR: Asia/Kolkata
+              zh_Hans: 亚洲/加尔各答
+            value: Asia/Kolkata
+          - icon: null
+            label:
+              en_US: Asia/Seoul
+              ja_JP: Asia/Seoul
+              pt_BR: Asia/Seoul
+              zh_Hans: 亚洲/首尔
+            value: Asia/Seoul
+          - icon: null
+            label:
+              en_US: Asia/Singapore
+              ja_JP: Asia/Singapore
+              pt_BR: Asia/Singapore
+              zh_Hans: 亚洲/新加坡
+            value: Asia/Singapore
+          - icon: null
+            label:
+              en_US: Europe/London
+              ja_JP: Europe/London
+              pt_BR: Europe/London
+              zh_Hans: 欧洲/伦敦
+            value: Europe/London
+          - icon: null
+            label:
+              en_US: Europe/Berlin
+              ja_JP: Europe/Berlin
+              pt_BR: Europe/Berlin
+              zh_Hans: 欧洲/柏林
+            value: Europe/Berlin
+          - icon: null
+            label:
+              en_US: Europe/Moscow
+              ja_JP: Europe/Moscow
+              pt_BR: Europe/Moscow
+              zh_Hans: 欧洲/莫斯科
+            value: Europe/Moscow
+          - icon: null
+            label:
+              en_US: Australia/Sydney
+              ja_JP: Australia/Sydney
+              pt_BR: Australia/Sydney
+              zh_Hans: 澳大利亚/悉尼
+            value: Australia/Sydney
+          - icon: null
+            label:
+              en_US: Pacific/Auckland
+              ja_JP: Pacific/Auckland
+              pt_BR: Pacific/Auckland
+              zh_Hans: 太平洋/奥克兰
+            value: Pacific/Auckland
+          - icon: null
+            label:
+              en_US: Africa/Cairo
+              ja_JP: Africa/Cairo
+              pt_BR: Africa/Cairo
+              zh_Hans: 非洲/开罗
+            value: Africa/Cairo
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: select
+        params:
+          format: ''
+          timezone: ''
+        plugin_id: null
+        plugin_unique_identifier: ''
+        provider_icon: /console/api/workspaces/current/tool-provider/builtin/time/icon
+        provider_id: time
+        provider_name: time
+        provider_type: builtin
+        selected: false
+        title: 获取当前时间
+        tool_configurations:
+          format:
+            type: mixed
+            value: '%Y-%m-%d %H:%M:%S'
+          timezone:
+            type: constant
+            value: Asia/Shanghai
+        tool_description: 一个用于获取当前时间的工具。
+        tool_label: 获取当前时间
+        tool_name: current_time
+        tool_node_version: '2'
+        tool_parameters: {}
+        type: tool
+      height: 114
+      id: '1780578347684'
+      position:
+        x: 699.2410737511325
+        y: 236.65422254838086
+      positionAbsolute:
+        x: 699.2410737511325
+        y: 236.65422254838086
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: Qwen3-235B-A22B-Instruct-2507
+          provider: langgenius/gitee_ai/gitee_ai
+        prompt_template:
+        - id: 1024b390-a7cf-4cab-9e05-70c1cfe7e383
+          role: system
+          text: '你是PostgreSQL SQL生成器，只输出**单条完整可执行SQL语句**，不要解释、不要markdown代码块、不要多余文字，只返回SQL正文。
+
+            数据表：public.bill
+
+            字段：
+
+            bill_month 字符型，直接使用{{#1780579414606.text#}}（例：''2026-06''）
+
+            month_budget 数值型，从{{#sys.query#}}提取纯数字作为预算金额，剔除元、块等单位。
+
+
+            业务规则：
+
+            用户录入某月预算，**当月已有数据就更新金额，无数据就新增**；
+
+            禁止使用ON CONFLICT语法！统一用CTE原子写法，固定模板：
+
+            WITH update_row AS (UPDATE public.bill SET month_budget=预算数值 WHERE bill_month=''年月''
+            RETURNING 1)
+
+            INSERT INTO public.bill(bill_month,month_budget) SELECT ''年月'',预算数值 WHERE
+            NOT EXISTS(SELECT 1 FROM update_row);
+
+
+            根据用户输入的月份和预算金额，替换上面模板里的年月、预算数值，生成最终SQL。'
+        selected: false
+        title: LLM 6
+        type: llm
+        vision:
+          enabled: false
+      height: 94
+      id: '1780579390653'
+      position:
+        x: 967.6246412067583
+        y: 643.8339456577744
+      positionAbsolute:
+        x: 967.6246412067583
+        y: 643.8339456577744
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        is_team_authorization: true
+        paramSchemas:
+        - auto_generate: null
+          default: '%Y-%m-%d %H:%M:%S'
+          form: form
+          human_description:
+            en_US: Time format in strftime standard.
+            ja_JP: Time format in strftime standard.
+            pt_BR: Time format in strftime standard.
+            zh_Hans: strftime 标准的时间格式。
+          label:
+            en_US: Format
+            ja_JP: Format
+            pt_BR: Format
+            zh_Hans: 格式
+          llm_description: null
+          max: null
+          min: null
+          name: format
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: UTC
+          form: form
+          human_description:
+            en_US: Timezone
+            ja_JP: Timezone
+            pt_BR: Timezone
+            zh_Hans: 时区
+          label:
+            en_US: Timezone
+            ja_JP: Timezone
+            pt_BR: Timezone
+            zh_Hans: 时区
+          llm_description: null
+          max: null
+          min: null
+          name: timezone
+          options:
+          - icon: null
+            label:
+              en_US: UTC
+              ja_JP: UTC
+              pt_BR: UTC
+              zh_Hans: UTC
+            value: UTC
+          - icon: null
+            label:
+              en_US: America/New_York
+              ja_JP: America/New_York
+              pt_BR: America/New_York
+              zh_Hans: 美洲/纽约
+            value: America/New_York
+          - icon: null
+            label:
+              en_US: America/Los_Angeles
+              ja_JP: America/Los_Angeles
+              pt_BR: America/Los_Angeles
+              zh_Hans: 美洲/洛杉矶
+            value: America/Los_Angeles
+          - icon: null
+            label:
+              en_US: America/Chicago
+              ja_JP: America/Chicago
+              pt_BR: America/Chicago
+              zh_Hans: 美洲/芝加哥
+            value: America/Chicago
+          - icon: null
+            label:
+              en_US: America/Sao_Paulo
+              ja_JP: America/Sao_Paulo
+              pt_BR: América/São Paulo
+              zh_Hans: 美洲/圣保罗
+            value: America/Sao_Paulo
+          - icon: null
+            label:
+              en_US: Asia/Shanghai
+              ja_JP: Asia/Shanghai
+              pt_BR: Asia/Shanghai
+              zh_Hans: 亚洲/上海
+            value: Asia/Shanghai
+          - icon: null
+            label:
+              en_US: Asia/Ho_Chi_Minh
+              ja_JP: Asia/Ho_Chi_Minh
+              pt_BR: Ásia/Ho Chi Minh
+              zh_Hans: 亚洲/胡志明市
+            value: Asia/Ho_Chi_Minh
+          - icon: null
+            label:
+              en_US: Asia/Tokyo
+              ja_JP: Asia/Tokyo
+              pt_BR: Asia/Tokyo
+              zh_Hans: 亚洲/东京
+            value: Asia/Tokyo
+          - icon: null
+            label:
+              en_US: Asia/Dubai
+              ja_JP: Asia/Dubai
+              pt_BR: Asia/Dubai
+              zh_Hans: 亚洲/迪拜
+            value: Asia/Dubai
+          - icon: null
+            label:
+              en_US: Asia/Kolkata
+              ja_JP: Asia/Kolkata
+              pt_BR: Asia/Kolkata
+              zh_Hans: 亚洲/加尔各答
+            value: Asia/Kolkata
+          - icon: null
+            label:
+              en_US: Asia/Seoul
+              ja_JP: Asia/Seoul
+              pt_BR: Asia/Seoul
+              zh_Hans: 亚洲/首尔
+            value: Asia/Seoul
+          - icon: null
+            label:
+              en_US: Asia/Singapore
+              ja_JP: Asia/Singapore
+              pt_BR: Asia/Singapore
+              zh_Hans: 亚洲/新加坡
+            value: Asia/Singapore
+          - icon: null
+            label:
+              en_US: Europe/London
+              ja_JP: Europe/London
+              pt_BR: Europe/London
+              zh_Hans: 欧洲/伦敦
+            value: Europe/London
+          - icon: null
+            label:
+              en_US: Europe/Berlin
+              ja_JP: Europe/Berlin
+              pt_BR: Europe/Berlin
+              zh_Hans: 欧洲/柏林
+            value: Europe/Berlin
+          - icon: null
+            label:
+              en_US: Europe/Moscow
+              ja_JP: Europe/Moscow
+              pt_BR: Europe/Moscow
+              zh_Hans: 欧洲/莫斯科
+            value: Europe/Moscow
+          - icon: null
+            label:
+              en_US: Australia/Sydney
+              ja_JP: Australia/Sydney
+              pt_BR: Australia/Sydney
+              zh_Hans: 澳大利亚/悉尼
+            value: Australia/Sydney
+          - icon: null
+            label:
+              en_US: Pacific/Auckland
+              ja_JP: Pacific/Auckland
+              pt_BR: Pacific/Auckland
+              zh_Hans: 太平洋/奥克兰
+            value: Pacific/Auckland
+          - icon: null
+            label:
+              en_US: Africa/Cairo
+              ja_JP: Africa/Cairo
+              pt_BR: Africa/Cairo
+              zh_Hans: 非洲/开罗
+            value: Africa/Cairo
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: select
+        params:
+          format: ''
+          timezone: ''
+        plugin_id: null
+        plugin_unique_identifier: ''
+        provider_icon: /console/api/workspaces/current/tool-provider/builtin/time/icon
+        provider_id: time
+        provider_name: time
+        provider_type: builtin
+        selected: false
+        title: 获取当前时间
+        tool_configurations:
+          format:
+            type: mixed
+            value: '%Y-%m'
+          timezone:
+            type: constant
+            value: Asia/Shanghai
+        tool_description: 一个用于获取当前时间的工具。
+        tool_label: 获取当前时间
+        tool_name: current_time
+        tool_node_version: '2'
+        tool_parameters: {}
+        type: tool
+      height: 114
+      id: '1780579414606'
+      position:
+        x: 707.8931776138572
+        y: 605.1472817091454
+      positionAbsolute:
+        x: 707.8931776138572
+        y: 605.1472817091454
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        is_team_authorization: true
+        paramSchemas:
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: The SQL query to execute (allow literal arg, or `$arg0~N` as parameters)
+            ja_JP: The SQL query to execute (allow literal arg, or `$arg0~N` as parameters)
+            pt_BR: The SQL query to execute (allow literal arg, or `$arg0~N` as parameters)
+            zh_Hans: 要执行的SQL查询（参数使用变量`$arg0~N`表示，或使用字面值）
+          label:
+            en_US: SQL Query
+            ja_JP: SQL Query
+            pt_BR: SQL Query
+            zh_Hans: SQL查询
+          llm_description: ''
+          max: null
+          min: null
+          name: query
+          options: []
+          placeholder: null
+          precision: null
+          required: true
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: Enter the parameter corresponding to the SQL variables.
+            ja_JP: Enter the parameter corresponding to the SQL variables.
+            pt_BR: Enter the parameter corresponding to the SQL variables.
+            zh_Hans: 输入变量对应的参数。
+          label:
+            en_US: arg0
+            ja_JP: arg0
+            pt_BR: arg0
+            zh_Hans: 参数0
+          llm_description: ''
+          max: null
+          min: null
+          name: arg0
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: Enter the parameter corresponding to the SQL variables.
+            ja_JP: Enter the parameter corresponding to the SQL variables.
+            pt_BR: Enter the parameter corresponding to the SQL variables.
+            zh_Hans: 输入变量对应的参数。
+          label:
+            en_US: arg1
+            ja_JP: arg1
+            pt_BR: arg1
+            zh_Hans: 参数1
+          llm_description: ''
+          max: null
+          min: null
+          name: arg1
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: Enter the parameter corresponding to the SQL variables.
+            ja_JP: Enter the parameter corresponding to the SQL variables.
+            pt_BR: Enter the parameter corresponding to the SQL variables.
+            zh_Hans: 输入变量对应的参数。
+          label:
+            en_US: arg2
+            ja_JP: arg2
+            pt_BR: arg2
+            zh_Hans: 参数2
+          llm_description: ''
+          max: null
+          min: null
+          name: arg2
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: Enter the parameter corresponding to the SQL variables.
+            ja_JP: Enter the parameter corresponding to the SQL variables.
+            pt_BR: Enter the parameter corresponding to the SQL variables.
+            zh_Hans: 输入变量对应的参数。
+          label:
+            en_US: arg3
+            ja_JP: arg3
+            pt_BR: arg3
+            zh_Hans: 参数3
+          llm_description: ''
+          max: null
+          min: null
+          name: arg3
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: Enter the parameter corresponding to the SQL variables.
+            ja_JP: Enter the parameter corresponding to the SQL variables.
+            pt_BR: Enter the parameter corresponding to the SQL variables.
+            zh_Hans: 输入变量对应的参数。
+          label:
+            en_US: arg4
+            ja_JP: arg4
+            pt_BR: arg4
+            zh_Hans: 参数4
+          llm_description: ''
+          max: null
+          min: null
+          name: arg4
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: string
+        params:
+          arg0: ''
+          arg1: ''
+          arg2: ''
+          arg3: ''
+          arg4: ''
+          query: ''
+        plugin_id: spance/db_client_node
+        plugin_unique_identifier: spance/db_client_node:0.1.47@60965f21262129b75b2e01543190ab65021b75b55441532f77f88fcd7b71095d
+        provider_icon: /console/api/workspaces/current/plugin/icon?tenant_id=58e291a1-822b-41ce-b156-256a267a8e77&filename=6b7847477266026620c1046288e6674d42cfb55ccca6335d26475489ade16071.svg
+        provider_id: spance/db_client_node/db_client_node
+        provider_name: spance/db_client_node/db_client_node
+        provider_type: builtin
+        selected: false
+        title: PostgreSQL 客户端(5)
+        tool_configurations: {}
+        tool_description: 读写PostgreSQL客户端，最多5个参数。
+        tool_label: PostgreSQL 客户端(5)
+        tool_name: postgres_node_5
+        tool_node_version: '2'
+        tool_parameters:
+          arg0:
+            type: mixed
+            value: null
+          arg1:
+            type: mixed
+            value: null
+          arg2:
+            type: mixed
+            value: null
+          arg3:
+            type: mixed
+            value: null
+          arg4:
+            type: mixed
+            value: null
+          query:
+            type: mixed
+            value: '{{#1780579390653.text#}}'
+        type: tool
+      height: 52
+      id: '1780580993790'
+      position:
+        x: 1146.1464737879885
+        y: 581.8412756240797
+      positionAbsolute:
+        x: 1146.1464737879885
+        y: 581.8412756240797
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        model:
+          completion_params:
+            enable_thinking: false
+          mode: chat
+          name: Pro/moonshotai/Kimi-K2.5
+          provider: langgenius/siliconflow/siliconflow
+        prompt_template:
+        - id: 6ee50654-270c-4258-86c9-a1f9e1d96bbf
+          role: system
+          text: '你只输出纯SQL，不输出任何文字、思考、解释、换行、符号。
+
+            根据日期{{#1780493063452.text#}}生成SQL。
+
+
+            【表】public.expenses
+
+            【字段】id, date, type, amount, month_budget, bill_month
+
+
+            【必须满足】
+
+            1. 先查当月预算 monthly_budget
+
+            2. 再算当月总支出 total_spent
+
+            3. 支出必须带 id = ''{{#sys.user_id#}}''
+
+            4. 预算不需要带 id
+
+            5. 只查当前年月
+
+            6. 无数据返回0
+
+            7. 禁止GROUP BY、禁止JOIN
+
+            8. 只输出纯SQL，禁止输出任何中文、注释、思考内容
+
+
+            【唯一输出】
+
+            SELECT COALESCE((SELECT month_budget FROM public.expenses WHERE bill_month=to_char(now(),''YYYY-MM'')
+            LIMIT 1),0) AS monthly_budget, COALESCE((SELECT SUM(amount) FROM public.expenses
+            WHERE id=''{{#sys.user_id#}}'' AND type=''支出'' AND to_char(date,''YYYY-MM'')=to_char(now(),''YYYY-MM'')),0)
+            AS total_spent;'
+        selected: false
+        title: LLM 6
+        type: llm
+        vision:
+          enabled: false
+      height: 88
+      id: '1780582028718'
+      position:
+        x: 2301.051665616556
+        y: 49.79576334421128
+      positionAbsolute:
+        x: 2301.051665616556
+        y: 49.79576334421128
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        is_team_authorization: true
+        paramSchemas:
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: The SQL query string.
+            ja_JP: The SQL query string.
+            pt_BR: The SQL query string.
+            zh_Hans: SQL 查询语句。
+          label:
+            en_US: SQL Query
+            ja_JP: SQL Query
+            pt_BR: SQL Query
+            zh_Hans: SQL 查询语句
+          llm_description: The SQL query string.
+          max: null
+          min: null
+          name: query
+          options: []
+          placeholder: null
+          precision: null
+          required: true
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: Optional, Filling in this field will overwrite the database connection
+              entered during authorization.
+            ja_JP: Optional, Filling in this field will overwrite the database connection
+              entered during authorization.
+            pt_BR: Optional, Filling in this field will overwrite the database connection
+              entered during authorization.
+            zh_Hans: 选填，填写后将覆盖授权时填写的数据库连接。
+          label:
+            en_US: DB URI
+            ja_JP: DB URI
+            pt_BR: DB URI
+            zh_Hans: DB URI
+          llm_description: ''
+          max: null
+          min: null
+          name: db_uri
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: json
+          form: form
+          human_description:
+            en_US: Choose the output format.
+            ja_JP: Choose the output format.
+            pt_BR: Choose the output format.
+            zh_Hans: 选择输出格式。
+          label:
+            en_US: Output format
+            ja_JP: Output format
+            pt_BR: Output format
+            zh_Hans: 输出格式
+          llm_description: ''
+          max: null
+          min: null
+          name: format
+          options:
+          - icon: ''
+            label:
+              en_US: JSON
+              ja_JP: JSON
+              pt_BR: JSON
+              zh_Hans: JSON
+            value: json
+          - icon: ''
+            label:
+              en_US: CSV
+              ja_JP: CSV
+              pt_BR: CSV
+              zh_Hans: CSV
+            value: csv
+          - icon: ''
+            label:
+              en_US: YAML
+              ja_JP: YAML
+              pt_BR: YAML
+              zh_Hans: YAML
+            value: yaml
+          - icon: ''
+            label:
+              en_US: Markdown
+              ja_JP: Markdown
+              pt_BR: Markdown
+              zh_Hans: Markdown
+            value: md
+          - icon: ''
+            label:
+              en_US: Excel
+              ja_JP: Excel
+              pt_BR: Excel
+              zh_Hans: Excel
+            value: xlsx
+          - icon: ''
+            label:
+              en_US: HTML
+              ja_JP: HTML
+              pt_BR: HTML
+              zh_Hans: HTML
+            value: html
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: select
+        - auto_generate: null
+          default: null
+          form: form
+          human_description:
+            en_US: 'Optional. For example {"connect_args": {"ssl": {"ca": "/path/to/ca.pem"}}}
+
+              More connection options can be found at https://docs.sqlalchemy.org/en/20/core/engines.html#sqlalchemy.create_engine
+
+              '
+            ja_JP: 'Optional. For example {"connect_args": {"ssl": {"ca": "/path/to/ca.pem"}}}
+
+              More connection options can be found at https://docs.sqlalchemy.org/en/20/core/engines.html#sqlalchemy.create_engine
+
+              '
+            pt_BR: 'Optional. For example {"connect_args": {"ssl": {"ca": "/path/to/ca.pem"}}}
+
+              More connection options can be found at https://docs.sqlalchemy.org/en/20/core/engines.html#sqlalchemy.create_engine
+
+              '
+            zh_Hans: '选填项。例如 {"connect_args": {"ssl": {"ca": "/path/to/ca.pem"}}}
+
+              更多连接选项可参考 https://docs.sqlalchemy.org/en/20/core/engines.html#sqlalchemy.create_engine
+
+              '
+          label:
+            en_US: DB Config Options
+            ja_JP: DB Config Options
+            pt_BR: DB Config Options
+            zh_Hans: 数据库连接配置选项
+          llm_description: ''
+          max: null
+          min: null
+          name: config_options
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: string
+        params:
+          config_options: ''
+          db_uri: ''
+          format: ''
+          query: ''
+        plugin_id: hjlarry/database
+        plugin_unique_identifier: hjlarry/database:0.0.6@534bc26cf5bc4ff6b5557457452287ccc71f00eef9378784c4f43ca49954ca2f
+        provider_icon: /console/api/workspaces/current/plugin/icon?tenant_id=58e291a1-822b-41ce-b156-256a267a8e77&filename=65d2d7404efb4952bb715a35ae79ccce92e70b820fd6cdb74e9acc58a505f7cf.svg
+        provider_id: hjlarry/database/database
+        provider_name: hjlarry/database/database
+        provider_type: builtin
+        selected: false
+        title: SQL Execute
+        tool_configurations:
+          config_options:
+            type: mixed
+            value: null
+          format:
+            type: constant
+            value: md
+        tool_description: 此工具用于在已存在的数据库中执行 SQL 查询。
+        tool_label: SQL Execute
+        tool_name: sql_execute
+        tool_node_version: '2'
+        tool_parameters:
+          db_uri:
+            type: mixed
+            value: null
+          query:
+            type: mixed
+            value: '{{#1780800754690.budget1spent2#}}'
+        type: tool
+      height: 114
+      id: '1780582694877'
+      position:
+        x: 3091.935275289022
+        y: 11.244809565625374
+      positionAbsolute:
+        x: 3091.935275289022
+        y: 11.244809565625374
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - '1780582694877'
+          - text
+        model:
+          completion_params:
+            enable_thinking: false
+          mode: chat
+          name: Pro/moonshotai/Kimi-K2.5
+          provider: langgenius/siliconflow/siliconflow
+        prompt_template:
+        - id: f3b31b97-4bc3-4319-8d2a-d429567778fa
+          role: system
+          text: '你是预算判断助手，输入内容{{#1780582694877.text#}}为markdown格式。一共两个指标total_spent为总支出，monthly_budget为预算
+
+            规则：
+
+            1. 找到文本里所有形如xx.xx的数字，第一个=total_spent，第二个=monthly_budget；
+
+            2. 存在第二个有效数字：
+
+            ①总支出 ≤ 预算×0.8 → 记账成功✅，本月消费正常
+
+            ②预算×0.8＜总支出＜预算 → 记账成功⚠️，预算即将用完
+
+            ③总支出≥预算 → 记账成功❌，已超出预算
+
+            3. 找不到第二个数字、第二个值是None时输出：记账成功，暂未设置预算，建议设置预算控制消费
+
+
+            参考示例：
+
+            示例1（已有预算）：
+
+            total_spent|monthly_budget
+
+            -----------|--------------
+
+            515.00     |1000.00
+
+            提取：总支出515.00，预算1000.00，输出：记账成功✅，本月消费正常
+
+
+            示例2（未设置预算）：
+
+            total_spent|monthly_budget
+
+            -----------|--------------
+
+            52.00     |None
+
+            输出：记账成功，暂未设置预算，建议设置预算控制消费
+
+
+            只输出一句话，无多余内容。'
+        selected: false
+        title: LLM 7
+        type: llm
+        vision:
+          enabled: false
+      height: 88
+      id: '1780582871485'
+      position:
+        x: 3666.0886308150916
+        y: 31.90512080136199
+      positionAbsolute:
+        x: 3666.0886308150916
+        y: 31.90512080136199
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - sys
+          - query
+        model:
+          completion_params:
+            enable_thinking: false
+            temperature: 0.7
+          mode: chat
+          name: Pro/moonshotai/Kimi-K2.5
+          provider: langgenius/siliconflow/siliconflow
+        prompt_template:
+        - id: 7a904934-b888-4e9b-9143-7d047932065a
+          role: system
+          text: '你是一个个人记账助手，只会生成可直接在PostgreSQL中执行的纯净SQL语句，不输出任何多余内容、不使用```sql包裹、不添加注释、不换行、不解释。
+
+            根据用户问题{{#sys.query#}}以及{{#1780662637826.text#}}自动识别查询粒度：本周/本月/自定义日期，自动拼接日期筛选条件；
+
+            数据库表结构：
+
+            表名：public.expenses
+
+            字段：
+
+            id：用户ID（VARCHAR，必填）{{#sys.user_id#}}
+
+            date：交易日期（DATE，格式 yyyy-MM-DD）
+
+            type：收支类型（支出/收入）
+
+            category：分类（仅限：餐饮饮品、通勤交通、购物消费、娱乐休闲、房租水电、学习医疗、人情往来、工资、兼职、红包、理财收益）
+
+            item：具体花钱的地方
+
+            amount：金额（DECIMAL(10,2)）
+
+            remark：备注
+
+
+            规则：
+
+            1. 必带筛选：id = ''{{#sys.user_id#}}''
+
+            2. 识别本月：WHERE DATE_TRUNC(''month'',date)=DATE_TRUNC(''month'',CURRENT_DATE)；识别本周：WHERE
+            DATE_TRUNC(''week'',date)=DATE_TRUNC(''week'',CURRENT_DATE)；自定义日期按用户描述拼接date
+            BETWEEN ''起始'' AND ''结束''
+
+            3. 明细查询只查：date,item,category,type,amount,remark，禁止SUM、GROUP BY等聚合函数
+
+            4. 只生成纯净SELECT单语句，无多余符号、无换行、无说明
+
+            5. 表固定写public.expenses'
+        selected: true
+        title: LLM 8
+        type: llm
+        vision:
+          enabled: false
+      height: 88
+      id: '1780662307787'
+      position:
+        x: 1073.4497733347716
+        y: 790.9255795696027
+      positionAbsolute:
+        x: 1073.4497733347716
+        y: 790.9255795696027
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        model:
+          completion_params:
+            enable_thinking: false
+            temperature: 0.7
+          mode: chat
+          name: Pro/moonshotai/Kimi-K2.5
+          provider: langgenius/siliconflow/siliconflow
+        parameters:
+        - description: 仅查看信息，不作统计
+          name: chaxun
+          required: false
+          type: string
+        query:
+        - '1780662307787'
+        - text
+        reasoning_mode: prompt
+        selected: false
+        title: 参数提取器 3
+        type: parameter-extractor
+        vision:
+          enabled: false
+      height: 88
+      id: '1780662319706'
+      position:
+        x: 1375.4497733347716
+        y: 790.9255795696027
+      positionAbsolute:
+        x: 1375.4497733347716
+        y: 790.9255795696027
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        is_team_authorization: true
+        paramSchemas:
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: The SQL query string.
+            ja_JP: The SQL query string.
+            pt_BR: The SQL query string.
+            zh_Hans: SQL 查询语句。
+          label:
+            en_US: SQL Query
+            ja_JP: SQL Query
+            pt_BR: SQL Query
+            zh_Hans: SQL 查询语句
+          llm_description: The SQL query string.
+          max: null
+          min: null
+          name: query
+          options: []
+          placeholder: null
+          precision: null
+          required: true
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: Optional, Filling in this field will overwrite the database connection
+              entered during authorization.
+            ja_JP: Optional, Filling in this field will overwrite the database connection
+              entered during authorization.
+            pt_BR: Optional, Filling in this field will overwrite the database connection
+              entered during authorization.
+            zh_Hans: 选填，填写后将覆盖授权时填写的数据库连接。
+          label:
+            en_US: DB URI
+            ja_JP: DB URI
+            pt_BR: DB URI
+            zh_Hans: DB URI
+          llm_description: ''
+          max: null
+          min: null
+          name: db_uri
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: json
+          form: form
+          human_description:
+            en_US: Choose the output format.
+            ja_JP: Choose the output format.
+            pt_BR: Choose the output format.
+            zh_Hans: 选择输出格式。
+          label:
+            en_US: Output format
+            ja_JP: Output format
+            pt_BR: Output format
+            zh_Hans: 输出格式
+          llm_description: ''
+          max: null
+          min: null
+          name: format
+          options:
+          - icon: ''
+            label:
+              en_US: JSON
+              ja_JP: JSON
+              pt_BR: JSON
+              zh_Hans: JSON
+            value: json
+          - icon: ''
+            label:
+              en_US: CSV
+              ja_JP: CSV
+              pt_BR: CSV
+              zh_Hans: CSV
+            value: csv
+          - icon: ''
+            label:
+              en_US: YAML
+              ja_JP: YAML
+              pt_BR: YAML
+              zh_Hans: YAML
+            value: yaml
+          - icon: ''
+            label:
+              en_US: Markdown
+              ja_JP: Markdown
+              pt_BR: Markdown
+              zh_Hans: Markdown
+            value: md
+          - icon: ''
+            label:
+              en_US: Excel
+              ja_JP: Excel
+              pt_BR: Excel
+              zh_Hans: Excel
+            value: xlsx
+          - icon: ''
+            label:
+              en_US: HTML
+              ja_JP: HTML
+              pt_BR: HTML
+              zh_Hans: HTML
+            value: html
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: select
+        - auto_generate: null
+          default: null
+          form: form
+          human_description:
+            en_US: 'Optional. For example {"connect_args": {"ssl": {"ca": "/path/to/ca.pem"}}}
+
+              More connection options can be found at https://docs.sqlalchemy.org/en/20/core/engines.html#sqlalchemy.create_engine
+
+              '
+            ja_JP: 'Optional. For example {"connect_args": {"ssl": {"ca": "/path/to/ca.pem"}}}
+
+              More connection options can be found at https://docs.sqlalchemy.org/en/20/core/engines.html#sqlalchemy.create_engine
+
+              '
+            pt_BR: 'Optional. For example {"connect_args": {"ssl": {"ca": "/path/to/ca.pem"}}}
+
+              More connection options can be found at https://docs.sqlalchemy.org/en/20/core/engines.html#sqlalchemy.create_engine
+
+              '
+            zh_Hans: '选填项。例如 {"connect_args": {"ssl": {"ca": "/path/to/ca.pem"}}}
+
+              更多连接选项可参考 https://docs.sqlalchemy.org/en/20/core/engines.html#sqlalchemy.create_engine
+
+              '
+          label:
+            en_US: DB Config Options
+            ja_JP: DB Config Options
+            pt_BR: DB Config Options
+            zh_Hans: 数据库连接配置选项
+          llm_description: ''
+          max: null
+          min: null
+          name: config_options
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: string
+        params:
+          config_options: ''
+          db_uri: ''
+          format: ''
+          query: ''
+        plugin_id: hjlarry/database
+        plugin_unique_identifier: hjlarry/database:0.0.6@534bc26cf5bc4ff6b5557457452287ccc71f00eef9378784c4f43ca49954ca2f
+        provider_icon: /console/api/workspaces/current/plugin/icon?tenant_id=58e291a1-822b-41ce-b156-256a267a8e77&filename=65d2d7404efb4952bb715a35ae79ccce92e70b820fd6cdb74e9acc58a505f7cf.svg
+        provider_id: hjlarry/database/database
+        provider_name: hjlarry/database/database
+        provider_type: builtin
+        selected: false
+        title: SQL Execute
+        tool_configurations:
+          config_options:
+            type: mixed
+            value: null
+          format:
+            type: constant
+            value: md
+        tool_description: 此工具用于在已存在的数据库中执行 SQL 查询。
+        tool_label: SQL Execute
+        tool_name: sql_execute
+        tool_node_version: '2'
+        tool_parameters:
+          db_uri:
+            type: mixed
+            value: ''
+          query:
+            type: mixed
+            value: '{{#1780662307787.text#}}'
+        type: tool
+      height: 114
+      id: '1780662361749'
+      position:
+        x: 1677.4497733347716
+        y: 790.9255795696027
+      positionAbsolute:
+        x: 1677.4497733347716
+        y: 790.9255795696027
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        answer: '{{#1780662361749.text#}}'
+        selected: false
+        title: 直接回复 5
+        type: answer
+        variables: []
+      height: 103
+      id: '1780662424928'
+      position:
+        x: 1965.2746878190314
+        y: 801.189329771983
+      positionAbsolute:
+        x: 1965.2746878190314
+        y: 801.189329771983
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        is_team_authorization: true
+        paramSchemas:
+        - auto_generate: null
+          default: '%Y-%m-%d %H:%M:%S'
+          form: form
+          human_description:
+            en_US: Time format in strftime standard.
+            ja_JP: Time format in strftime standard.
+            pt_BR: Time format in strftime standard.
+            zh_Hans: strftime 标准的时间格式。
+          label:
+            en_US: Format
+            ja_JP: Format
+            pt_BR: Format
+            zh_Hans: 格式
+          llm_description: null
+          max: null
+          min: null
+          name: format
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: UTC
+          form: form
+          human_description:
+            en_US: Timezone
+            ja_JP: Timezone
+            pt_BR: Timezone
+            zh_Hans: 时区
+          label:
+            en_US: Timezone
+            ja_JP: Timezone
+            pt_BR: Timezone
+            zh_Hans: 时区
+          llm_description: null
+          max: null
+          min: null
+          name: timezone
+          options:
+          - icon: null
+            label:
+              en_US: UTC
+              ja_JP: UTC
+              pt_BR: UTC
+              zh_Hans: UTC
+            value: UTC
+          - icon: null
+            label:
+              en_US: America/New_York
+              ja_JP: America/New_York
+              pt_BR: America/New_York
+              zh_Hans: 美洲/纽约
+            value: America/New_York
+          - icon: null
+            label:
+              en_US: America/Los_Angeles
+              ja_JP: America/Los_Angeles
+              pt_BR: America/Los_Angeles
+              zh_Hans: 美洲/洛杉矶
+            value: America/Los_Angeles
+          - icon: null
+            label:
+              en_US: America/Chicago
+              ja_JP: America/Chicago
+              pt_BR: America/Chicago
+              zh_Hans: 美洲/芝加哥
+            value: America/Chicago
+          - icon: null
+            label:
+              en_US: America/Sao_Paulo
+              ja_JP: America/Sao_Paulo
+              pt_BR: América/São Paulo
+              zh_Hans: 美洲/圣保罗
+            value: America/Sao_Paulo
+          - icon: null
+            label:
+              en_US: Asia/Shanghai
+              ja_JP: Asia/Shanghai
+              pt_BR: Asia/Shanghai
+              zh_Hans: 亚洲/上海
+            value: Asia/Shanghai
+          - icon: null
+            label:
+              en_US: Asia/Ho_Chi_Minh
+              ja_JP: Asia/Ho_Chi_Minh
+              pt_BR: Ásia/Ho Chi Minh
+              zh_Hans: 亚洲/胡志明市
+            value: Asia/Ho_Chi_Minh
+          - icon: null
+            label:
+              en_US: Asia/Tokyo
+              ja_JP: Asia/Tokyo
+              pt_BR: Asia/Tokyo
+              zh_Hans: 亚洲/东京
+            value: Asia/Tokyo
+          - icon: null
+            label:
+              en_US: Asia/Dubai
+              ja_JP: Asia/Dubai
+              pt_BR: Asia/Dubai
+              zh_Hans: 亚洲/迪拜
+            value: Asia/Dubai
+          - icon: null
+            label:
+              en_US: Asia/Kolkata
+              ja_JP: Asia/Kolkata
+              pt_BR: Asia/Kolkata
+              zh_Hans: 亚洲/加尔各答
+            value: Asia/Kolkata
+          - icon: null
+            label:
+              en_US: Asia/Seoul
+              ja_JP: Asia/Seoul
+              pt_BR: Asia/Seoul
+              zh_Hans: 亚洲/首尔
+            value: Asia/Seoul
+          - icon: null
+            label:
+              en_US: Asia/Singapore
+              ja_JP: Asia/Singapore
+              pt_BR: Asia/Singapore
+              zh_Hans: 亚洲/新加坡
+            value: Asia/Singapore
+          - icon: null
+            label:
+              en_US: Europe/London
+              ja_JP: Europe/London
+              pt_BR: Europe/London
+              zh_Hans: 欧洲/伦敦
+            value: Europe/London
+          - icon: null
+            label:
+              en_US: Europe/Berlin
+              ja_JP: Europe/Berlin
+              pt_BR: Europe/Berlin
+              zh_Hans: 欧洲/柏林
+            value: Europe/Berlin
+          - icon: null
+            label:
+              en_US: Europe/Moscow
+              ja_JP: Europe/Moscow
+              pt_BR: Europe/Moscow
+              zh_Hans: 欧洲/莫斯科
+            value: Europe/Moscow
+          - icon: null
+            label:
+              en_US: Australia/Sydney
+              ja_JP: Australia/Sydney
+              pt_BR: Australia/Sydney
+              zh_Hans: 澳大利亚/悉尼
+            value: Australia/Sydney
+          - icon: null
+            label:
+              en_US: Pacific/Auckland
+              ja_JP: Pacific/Auckland
+              pt_BR: Pacific/Auckland
+              zh_Hans: 太平洋/奥克兰
+            value: Pacific/Auckland
+          - icon: null
+            label:
+              en_US: Africa/Cairo
+              ja_JP: Africa/Cairo
+              pt_BR: Africa/Cairo
+              zh_Hans: 非洲/开罗
+            value: Africa/Cairo
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: select
+        params:
+          format: ''
+          timezone: ''
+        plugin_id: null
+        plugin_unique_identifier: ''
+        provider_icon: /console/api/workspaces/current/tool-provider/builtin/time/icon
+        provider_id: time
+        provider_name: time
+        provider_type: builtin
+        selected: false
+        title: 获取当前时间
+        tool_configurations:
+          format:
+            type: mixed
+            value: '%Y-%m-%d %H:%M:%S'
+          timezone:
+            type: constant
+            value: UTC
+        tool_description: 一个用于获取当前时间的工具。
+        tool_label: 获取当前时间
+        tool_name: current_time
+        tool_node_version: '2'
+        tool_parameters: {}
+        type: tool
+      height: 114
+      id: '1780662637826'
+      position:
+        x: 699.2410737511325
+        y: 795.9683946250577
+      positionAbsolute:
+        x: 699.2410737511325
+        y: 795.9683946250577
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        classes:
+        - id: '1'
+          name: 当用户问题是索要消费建议、优化方案、省钱技巧、管控方法时（如“给我优化建议”“怎么控制支出”“省钱建议”“怎么控制零食消费”）
+        - id: '2'
+          name: 当用户问题需要【数据统计、占比分析、总额查询、趋势查看、明细汇总】时 例如：“餐饮占比多少”、“本月总支出是多少”、“哪类消费最高”
+        instructions: ''
+        model:
+          completion_params: {}
+          mode: chat
+          name: deepseek-ai/DeepSeek-V3
+          provider: langgenius/siliconflow/siliconflow
+        query_variable_selector:
+        - '1780466131546'
+        - sys.query
+        selected: false
+        title: 问题分类器 2
+        type: question-classifier
+        vision:
+          enabled: false
+      height: 170
+      id: '1780735748979'
+      position:
+        x: 988.5007523515858
+        y: 212.71097664941487
+      positionAbsolute:
+        x: 988.5007523515858
+        y: 212.71097664941487
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        model:
+          completion_params: {}
+          mode: chat
+          name: Pro/moonshotai/Kimi-K2.5
+          provider: langgenius/siliconflow/siliconflow
+        prompt_template:
+        - id: e920a452-aea1-405f-b9a4-0fb06ccdf4ce
+          role: system
+          text: '你是问题拆分助手，将用户问题{{#sys.query#}}拆分为独立查询短句，输出纯JSON数组。
+
+            时间参考{{#1780578347684.text#}}
+
+
+            【强制约束】
+
+            1. 存在对比、并列类提问时，按对比项逐一拆分为独立查询；有几个查询需求就生成几个数组元素，一一对应；
+
+            2. 全程只输出标准JSON数组，禁止思考、解释、换行、多余文字、代码块；
+
+            3. 语句简洁，适配账单数据表查询。
+
+
+            示例：
+
+            输入：本月总花费多少？哪类花最多？
+
+            输出：["本月总支出","支出最高的消费类别"]
+
+            输入：这周三和上周三消费情况对比
+
+            输出：["这周三消费情况","上周三消费情况"]
+
+            输入：今天和昨天各类消费对比
+
+            输出：["今日各类消费","昨日各类消费"]'
+        - id: 535a0508-241d-4e2b-885c-0e951056976d
+          role: user
+          text: '{{#sys.query#}}'
+        selected: false
+        title: LLM 9
+        type: llm
+        vision:
+          enabled: false
+      height: 88
+      id: '1780795613899'
+      position:
+        x: 1324.4551490284073
+        y: 384.7115673784905
+      positionAbsolute:
+        x: 1324.4551490284073
+        y: 384.7115673784905
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - '1780795613899'
+          - text
+        model:
+          completion_params:
+            temperature: 0.3
+          mode: chat
+          name: Pro/deepseek-ai/DeepSeek-R1
+          provider: langgenius/siliconflow/siliconflow
+        prompt_template:
+        - id: ab8c7523-c143-40ad-8741-c9feea372b01
+          role: system
+          text: '你是专业的PostgreSQL SQL生成助手。
+
+            根据{{#1780795613899.text#}}的查询问题，生成1条正确的统计SQL。
+
+
+            【表结构】
+
+            expenses 表字段：id, date, type, category, amount
+
+
+            【必带条件】
+
+            1. 必须带 id = ''{{#sys.user_id#}}''
+
+            2. 支出查询固定 type = ''支出''
+
+            3. 只返回统计字段：category, value, ratio
+
+
+            【自动识别时间规则（严格按自然语言）】
+
+            - 今天：date::date = CURRENT_DATE
+
+            - 昨天：date::date = CURRENT_DATE - 1
+
+            - 近两天/这两天：date >= NOW() - INTERVAL ''48 hours''
+
+            - 本周一：date::date = DATE_TRUNC(''week'', CURRENT_DATE)
+
+            - 本周二：date::date = DATE_TRUNC(''week'', CURRENT_DATE) + INTERVAL ''1 day''
+
+            - 本周三：date::date = DATE_TRUNC(''week'', CURRENT_DATE) + INTERVAL ''2 days''
+
+            - 本周四：date::date = DATE_TRUNC(''week'', CURRENT_DATE) + INTERVAL ''3 days''
+
+            - 本周五：date::date = DATE_TRUNC(''week'', CURRENT_DATE) + INTERVAL ''4 days''
+
+            - 本周六：date::date = DATE_TRUNC(''week'', CURRENT_DATE) + INTERVAL ''5 days''
+
+            - 本周日：date::date = DATE_TRUNC(''week'', CURRENT_DATE) + INTERVAL ''6 days''
+
+            - 本周：date >= DATE_TRUNC(''week'', CURRENT_DATE)
+
+            - 上周：date >= DATE_TRUNC(''week'', CURRENT_DATE) - INTERVAL ''7 days''
+            AND date < DATE_TRUNC(''week'', CURRENT_DATE)
+
+            - 本月：date >= DATE_TRUNC(''month'', CURRENT_DATE)
+
+            - 上月：date >= DATE_TRUNC(''month'', CURRENT_DATE - INTERVAL ''1 month'')
+            AND date < DATE_TRUNC(''month'', CURRENT_DATE)
+
+            - 今年：date >= DATE_TRUNC(''year'', CURRENT_DATE)
+
+            - 去年：date >= DATE_TRUNC(''year'', CURRENT_DATE - INTERVAL ''1 year'')
+            AND date < DATE_TRUNC(''year'', CURRENT_DATE)
+
+            - 未指定时间 → 默认本月
+
+
+            【SQL输出固定格式】
+
+            SELECT category, SUM(amount) AS value,
+
+            ROUND(SUM(amount) / total * 100, 2) AS ratio
+
+            FROM expenses,
+
+            (SELECT COALESCE(SUM(amount), 0) AS total FROM expenses
+
+            WHERE id = ''{{#sys.user_id#}}'' AND type = ''支出'' AND [时间条件]) AS total_bill
+
+            WHERE id = ''{{#sys.user_id#}}'' AND type = ''支出'' AND [时间条件]
+
+            GROUP BY category, total
+
+            ORDER BY value DESC
+
+
+            【强制输出规则】
+
+            1. 只生成1条SQL语句
+
+            2. 禁止使用 UNION / UNION ALL
+
+            3. 禁止多个 ORDER BY
+
+            4. 只输出纯SQL，绝对不能输出```sql、```、注释、解释、文字
+
+            5. 不要代码块，不要格式化符号，只输出干净SQL'
+        selected: false
+        title: LLM 10
+        type: llm
+        vision:
+          enabled: false
+      height: 88
+      id: '1780795765141'
+      position:
+        x: 1860.13595466702
+        y: 448.9469618131269
+      positionAbsolute:
+        x: 1860.13595466702
+        y: 448.9469618131269
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        instruction: 从输入文本中提取纯SQL语句，去掉```sql标记，去掉末尾分号，只返回SQL文本，赋值给queries。
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: Pro/moonshotai/Kimi-K2.5
+          provider: langgenius/siliconflow/siliconflow
+        parameters:
+        - description: 得到纯sql作为sql execute的输入
+          name: queries
+          required: false
+          type: string
+        query:
+        - '1780795765141'
+        - text
+        reasoning_mode: prompt
+        selected: false
+        title: 参数提取器 5
+        type: parameter-extractor
+        vision:
+          enabled: false
+      height: 88
+      id: '1780795835770'
+      position:
+        x: 2162.13595466702
+        y: 448.9469618131269
+      positionAbsolute:
+        x: 2162.13595466702
+        y: 448.9469618131269
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        is_team_authorization: true
+        paramSchemas:
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: The SQL query string.
+            ja_JP: The SQL query string.
+            pt_BR: The SQL query string.
+            zh_Hans: SQL 查询语句。
+          label:
+            en_US: SQL Query
+            ja_JP: SQL Query
+            pt_BR: SQL Query
+            zh_Hans: SQL 查询语句
+          llm_description: The SQL query string.
+          max: null
+          min: null
+          name: query
+          options: []
+          placeholder: null
+          precision: null
+          required: true
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: Optional, Filling in this field will overwrite the database connection
+              entered during authorization.
+            ja_JP: Optional, Filling in this field will overwrite the database connection
+              entered during authorization.
+            pt_BR: Optional, Filling in this field will overwrite the database connection
+              entered during authorization.
+            zh_Hans: 选填，填写后将覆盖授权时填写的数据库连接。
+          label:
+            en_US: DB URI
+            ja_JP: DB URI
+            pt_BR: DB URI
+            zh_Hans: DB URI
+          llm_description: ''
+          max: null
+          min: null
+          name: db_uri
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: json
+          form: form
+          human_description:
+            en_US: Choose the output format.
+            ja_JP: Choose the output format.
+            pt_BR: Choose the output format.
+            zh_Hans: 选择输出格式。
+          label:
+            en_US: Output format
+            ja_JP: Output format
+            pt_BR: Output format
+            zh_Hans: 输出格式
+          llm_description: ''
+          max: null
+          min: null
+          name: format
+          options:
+          - icon: ''
+            label:
+              en_US: JSON
+              ja_JP: JSON
+              pt_BR: JSON
+              zh_Hans: JSON
+            value: json
+          - icon: ''
+            label:
+              en_US: CSV
+              ja_JP: CSV
+              pt_BR: CSV
+              zh_Hans: CSV
+            value: csv
+          - icon: ''
+            label:
+              en_US: YAML
+              ja_JP: YAML
+              pt_BR: YAML
+              zh_Hans: YAML
+            value: yaml
+          - icon: ''
+            label:
+              en_US: Markdown
+              ja_JP: Markdown
+              pt_BR: Markdown
+              zh_Hans: Markdown
+            value: md
+          - icon: ''
+            label:
+              en_US: Excel
+              ja_JP: Excel
+              pt_BR: Excel
+              zh_Hans: Excel
+            value: xlsx
+          - icon: ''
+            label:
+              en_US: HTML
+              ja_JP: HTML
+              pt_BR: HTML
+              zh_Hans: HTML
+            value: html
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: select
+        - auto_generate: null
+          default: null
+          form: form
+          human_description:
+            en_US: 'Optional. For example {"connect_args": {"ssl": {"ca": "/path/to/ca.pem"}}}
+
+              More connection options can be found at https://docs.sqlalchemy.org/en/20/core/engines.html#sqlalchemy.create_engine
+
+              '
+            ja_JP: 'Optional. For example {"connect_args": {"ssl": {"ca": "/path/to/ca.pem"}}}
+
+              More connection options can be found at https://docs.sqlalchemy.org/en/20/core/engines.html#sqlalchemy.create_engine
+
+              '
+            pt_BR: 'Optional. For example {"connect_args": {"ssl": {"ca": "/path/to/ca.pem"}}}
+
+              More connection options can be found at https://docs.sqlalchemy.org/en/20/core/engines.html#sqlalchemy.create_engine
+
+              '
+            zh_Hans: '选填项。例如 {"connect_args": {"ssl": {"ca": "/path/to/ca.pem"}}}
+
+              更多连接选项可参考 https://docs.sqlalchemy.org/en/20/core/engines.html#sqlalchemy.create_engine
+
+              '
+          label:
+            en_US: DB Config Options
+            ja_JP: DB Config Options
+            pt_BR: DB Config Options
+            zh_Hans: 数据库连接配置选项
+          llm_description: ''
+          max: null
+          min: null
+          name: config_options
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: string
+        params:
+          config_options: ''
+          db_uri: ''
+          format: ''
+          query: ''
+        plugin_id: hjlarry/database
+        plugin_unique_identifier: hjlarry/database:0.0.6@534bc26cf5bc4ff6b5557457452287ccc71f00eef9378784c4f43ca49954ca2f
+        provider_icon: /console/api/workspaces/current/plugin/icon?tenant_id=58e291a1-822b-41ce-b156-256a267a8e77&filename=65d2d7404efb4952bb715a35ae79ccce92e70b820fd6cdb74e9acc58a505f7cf.svg
+        provider_id: hjlarry/database/database
+        provider_name: hjlarry/database/database
+        provider_type: builtin
+        selected: false
+        title: SQL Execute
+        tool_configurations:
+          config_options:
+            type: mixed
+            value: null
+          format:
+            type: constant
+            value: md
+        tool_description: 此工具用于在已存在的数据库中执行 SQL 查询。
+        tool_label: SQL Execute
+        tool_name: sql_execute
+        tool_node_version: '2'
+        tool_parameters:
+          db_uri:
+            type: mixed
+            value: ''
+          query:
+            type: mixed
+            value: '{{#1780795835770.queries#}}'
+        type: tool
+      height: 114
+      id: '1780795873465'
+      position:
+        x: 2464.13595466702
+        y: 448.9469618131269
+      positionAbsolute:
+        x: 2464.13595466702
+        y: 448.9469618131269
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - '1780795873465'
+          - text
+        model:
+          completion_params: {}
+          mode: chat
+          name: Pro/moonshotai/Kimi-K2.5
+          provider: langgenius/siliconflow/siliconflow
+        prompt_template:
+        - id: 11bbb4b2-78ee-4cba-96c6-71edcf44aae1
+          role: system
+          text: "根据用户问题 {{#sys.query#}} 和下面的查询结果，生成简洁、口语化、自然的中文回答。\n查询结果是 Markdown\
+            \ 表格：{{#1780795873465.text#}}\n\n【结果字段说明】\ncategory：消费类别\nvalue：金额\nratio：占比(%)\n\
+            \n【回答规则】\n1. 金额单位统一用“元”\n2. 纯文本回答，不要表格、不要符号、不要格式\n3. 结果为空时输出：未查询到相关数据\n\
+            4. 自动识别用户问题类型并精准回答：\n   - 问总额 → 计算总金额并回答\n   - 问类别花费 → 只回答对应类别金额\n   -\
+            \ 问占比 → 回答对应类别占比\n   - 问哪个类别最高/花费最多 → 回答第一名\n   - 问排行 → 按顺序简要说明\n   -\
+            \ 问所有分类 → 简要列出\n5. 语言自然、简短、不啰嗦\n\n直接输出最终回答，不要任何额外内容。"
+        selected: false
+        title: LLM 11
+        type: llm
+        vision:
+          enabled: false
+      height: 88
+      id: '1780795933629'
+      position:
+        x: 2766.13595466702
+        y: 448.9469618131269
+      positionAbsolute:
+        x: 2766.13595466702
+        y: 448.9469618131269
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - '1780795873465'
+          - text
+        model:
+          completion_params: {}
+          mode: chat
+          name: Pro/moonshotai/Kimi-K2.5
+          provider: langgenius/siliconflow/siliconflow
+        prompt_template:
+        - id: 3231d91c-e010-4bd5-9c71-692ddbb93093
+          role: system
+          text: '依据用户提问{{#sys.query#}}与数据表{{#1780795873465.text#}}生成JSON。
+
+            字段释义：
+
+            category=消费分类名称，value=消费金额(保留2位小数)，ratio=百分比数值(保留2位小数)
+
+
+            判定铁则：
+
+            1、提问含【占比、比例、百分比】→chart_type:"pie"
+
+            2、多分类明细对比、无占比关键词→chart_type:"bar"
+
+            3、查总金额、单类别、空数据→chart_type:"none"
+
+            4、禁止出现line、折线相关类型
+
+
+            硬性输出约束：
+
+            1、全程只返回单行紧凑JSON，无解释、无思考、无换行、无markdown代码标记、无多余汉字；
+
+            2、格式固定：{"chart_type":"pie|bar|none","data":[{"category":"xxx","value":数字,"ratio":数字}]}
+
+
+            参考样例：
+
+            问：哪个类别占比最高？
+
+            {"chart_type":"pie","data":[{"category":"餐饮","value":1200.00,"ratio":60.00},{"category":"交通","value":400.00,"ratio":20.00}]}
+
+            问：本月各类消费？
+
+            {"chart_type":"bar","data":[{"category":"餐饮","value":1200.00,"ratio":60.00},{"category":"购物","value":100.00,"ratio":5.00}]}
+
+            问：本月总消费？
+
+            {"chart_type":"none","data":[]}'
+        selected: false
+        title: LLM 12
+        type: llm
+        vision:
+          enabled: false
+      height: 88
+      id: '1780795984656'
+      position:
+        x: 2743.464638984207
+        y: 719.5319611376084
+      positionAbsolute:
+        x: 2743.464638984207
+        y: 719.5319611376084
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: contains
+            id: 01d781d3-84ba-446f-aa47-896f2aff9c1a
+            value: pie
+            varType: string
+            variable_selector:
+            - '1780795984656'
+            - text
+          id: 'true'
+          logical_operator: and
+        - case_id: 41025913-df6a-4cca-aa4d-df0c782751d7
+          conditions:
+          - comparison_operator: contains
+            id: 9bcb748c-edf7-4601-af80-28a7a90aa83e
+            value: bar
+            varType: string
+            variable_selector:
+            - '1780795984656'
+            - text
+          id: 41025913-df6a-4cca-aa4d-df0c782751d7
+          logical_operator: and
+        - case_id: df0f1759-9dd7-4cf8-839b-4f74668a66fd
+          conditions:
+          - comparison_operator: contains
+            id: 4daf76dc-dbb8-4a3c-8108-a9ddd7fe046f
+            value: line
+            varType: string
+            variable_selector:
+            - '1780795984656'
+            - text
+          id: df0f1759-9dd7-4cf8-839b-4f74668a66fd
+          logical_operator: and
+        selected: false
+        title: 条件分支
+        type: if-else
+      height: 220
+      id: '1780796011412'
+      position:
+        x: 3045.464638984207
+        y: 719.5319611376084
+      positionAbsolute:
+        x: 3045.464638984207
+        y: 719.5319611376084
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - '1780795873465'
+          - text
+        model:
+          completion_params: {}
+          mode: chat
+          name: Pro/moonshotai/Kimi-K2.5
+          provider: langgenius/siliconflow/siliconflow
+        prompt_template:
+        - id: 541a7b0a-8938-4a6a-a067-c504b74a052d
+          role: system
+          text: '你是一个数据格式化助手，只负责把查询结果{{#1780795873465.text#}}转换成折线图需要的 JSON 数组。
+
+
+            表格字段说明：
+
+            category = 消费类别
+
+            value = 金额
+
+
+            输出要求：
+
+            1. 只输出 JSON 数组
+
+            2. 每条数据格式：{"category":"分类名","value":数字}
+
+            3. value 必须是纯数字，保留两位小数
+
+            4. 不要任何文字、注释、代码块、多余符号
+
+            5. 严格只提取表格里真实存在的数据
+
+
+            示例输出：
+
+            [{"category":"餐饮饮品","value":332.00},{"category":"购物消费","value":100.00}]'
+        selected: false
+        title: LLM 13
+        type: llm
+        vision:
+          enabled: false
+      height: 88
+      id: '1780796083180'
+      position:
+        x: 3638.413190246972
+        y: 1040.708933310791
+      positionAbsolute:
+        x: 3638.413190246972
+        y: 1040.708933310791
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - '1780795873465'
+          - text
+        model:
+          completion_params: {}
+          mode: chat
+          name: Pro/moonshotai/Kimi-K2.5
+          provider: langgenius/siliconflow/siliconflow
+        prompt_template:
+        - id: 598e54fe-f26b-4ed1-888a-bf0d577ecf04
+          role: system
+          text: '你是数据格式化助手。
+
+            任务：把表格数据 {{#1780795873465.text#}} 转换成饼图JSON数组。
+
+
+            【终极强制规则】
+
+            1. 只输出纯 JSON 数组，**绝对禁止输出  标签**
+
+            2. 禁止输出任何思考、解释、文字
+
+            3. 禁止输出空格、换行、代码块
+
+            4. 格式：[{"category":"分类名","value":数字}]
+
+            5. value 为数字，保留2位小数
+
+
+            输出示例：
+
+            [{"category":"餐饮饮品","value":332.00},{"category":"购物消费","value":100.00}]'
+        selected: false
+        title: LLM 14
+        type: llm
+        vision:
+          enabled: false
+      height: 88
+      id: '1780796208460'
+      position:
+        x: 3530.724440753611
+        y: 655.7150541406002
+      positionAbsolute:
+        x: 3530.724440753611
+        y: 655.7150541406002
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        model:
+          completion_params: {}
+          mode: chat
+          name: Pro/moonshotai/Kimi-K2.5
+          provider: langgenius/siliconflow/siliconflow
+        prompt_template:
+        - id: 9e6fc571-7b19-452c-92ad-9704207f067b
+          role: system
+          text: '你是数据格式化助手。
+
+            任务：把表格数据 {{#1780795873465.text#}}转换成柱状图JSON数组。
+
+
+            【终极强制规则】
+
+            1. 只输出纯 JSON 数组，**绝对禁止输出  标签**
+
+            2. 禁止输出任何思考、解释、文字
+
+            3. 禁止输出空格、换行、代码块
+
+            4. 格式：[{"category":"分类名","value":数字}]
+
+            5. value 为数字，保留2位小数
+
+
+            输出示例：
+
+            [{"category":"餐饮饮品","value":332.00},{"category":"购物消费","value":100.00}]'
+        selected: false
+        title: LLM 15
+        type: llm
+        vision:
+          enabled: false
+      height: 88
+      id: '1780796244870'
+      position:
+        x: 3608.1847693365553
+        y: 801.189329771983
+      positionAbsolute:
+        x: 3608.1847693365553
+        y: 801.189329771983
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        instruction: '从输入文本{{#1780796208460.text#}}里，只提取第一个【[ 开头、]结尾】的完整JSON数组内容，赋值给pie。
+
+          规则：
+
+          1、丢弃所有、中文说明、多余文字；
+
+          2、只输出纯JSON字符串，无任何额外内容；
+
+          3、找不到合法数组则输出[]。'
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: Pro/moonshotai/Kimi-K2.5
+          provider: langgenius/siliconflow/siliconflow
+        parameters:
+        - description: 饼图纯参数
+          name: pie
+          required: false
+          type: string
+        query:
+        - '1780796208460'
+        - text
+        reasoning_mode: prompt
+        selected: false
+        title: 参数提取器 6
+        type: parameter-extractor
+        vision:
+          enabled: false
+      height: 88
+      id: '1780796287769'
+      position:
+        x: 3832.724440753611
+        y: 655.7150541406002
+      positionAbsolute:
+        x: 3832.724440753611
+        y: 655.7150541406002
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        instruction: '从输入文本{{#1780796244870.text#}}里，只提取第一个【[ 开头、]结尾】的完整JSON数组内容，赋值给bar。
+
+          规则：
+
+          1、丢弃所有、中文说明、多余文字；
+
+          2、只输出纯JSON字符串，无任何额外内容；
+
+          3、找不到合法数组则输出[]。'
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: Pro/moonshotai/Kimi-K2.5
+          provider: langgenius/siliconflow/siliconflow
+        parameters:
+        - description: 柱状图纯参数
+          name: bar
+          required: false
+          type: string
+        query:
+        - '1780796244870'
+        - text
+        reasoning_mode: prompt
+        selected: false
+        title: 参数提取器 7
+        type: parameter-extractor
+        vision:
+          enabled: false
+      height: 88
+      id: '1780796290780'
+      position:
+        x: 3866.731414277831
+        y: 844.6426848307076
+      positionAbsolute:
+        x: 3866.731414277831
+        y: 844.6426848307076
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        instruction: '从输入文本{{#1780796083180.text#}}里，只提取第一个【[ 开头、]结尾】的完整JSON数组内容，赋值给line。
+
+          规则：
+
+          1、丢弃所有、中文说明、多余文字；
+
+          2、只输出纯JSON字符串，无任何额外内容；
+
+          3、找不到合法数组则输出[]。'
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: Pro/moonshotai/Kimi-K2.5
+          provider: langgenius/siliconflow/siliconflow
+        parameters:
+        - description: 折线图纯参数
+          name: line
+          required: false
+          type: string
+        query:
+        - '1780796083180'
+        - text
+        reasoning_mode: prompt
+        selected: false
+        title: 参数提取器 8
+        type: parameter-extractor
+        vision:
+          enabled: false
+      height: 88
+      id: '1780796295250'
+      position:
+        x: 3847.8386512088196
+        y: 1103.0550514385263
+      positionAbsolute:
+        x: 3847.8386512088196
+        y: 1103.0550514385263
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        is_team_authorization: true
+        paramSchemas:
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: Data of pie chart, such as, [{ "category":"2018", "value":99.9
+              }].
+            ja_JP: Data of pie chart, such as, [{ "category":"2018", "value":99.9
+              }].
+            pt_BR: Data of pie chart, such as, [{ "category":"2018", "value":99.9
+              }].
+            zh_Hans: 饼图数据，例如，[{ "category":"2018", "value":99.9 }]。
+          label:
+            en_US: data of pie chart
+            ja_JP: data of pie chart
+            pt_BR: data of pie chart
+            zh_Hans: 饼图数据
+          llm_description: Data of pie chart, such as, [{ "category":"2018", "value":99.9
+            }].
+          max: null
+          min: null
+          name: data
+          options: []
+          placeholder: null
+          precision: null
+          required: true
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: 0
+          form: llm
+          human_description:
+            en_US: Set the innerRadius of pie chart, the value between 0 and 1. Set
+              the pie chart as a donut chart. Set the value to 0.6 or number in [0
+              ,1] to enable it.
+            ja_JP: Set the innerRadius of pie chart, the value between 0 and 1. Set
+              the pie chart as a donut chart. Set the value to 0.6 or number in [0
+              ,1] to enable it.
+            pt_BR: Set the innerRadius of pie chart, the value between 0 and 1. Set
+              the pie chart as a donut chart. Set the value to 0.6 or number in [0
+              ,1] to enable it.
+            zh_Hans: 饼图内半径，设置为环图。
+          label:
+            en_US: innerRadius
+            ja_JP: innerRadius
+            pt_BR: innerRadius
+            zh_Hans: 饼图内半径
+          llm_description: Set the innerRadius of pie chart, the value between 0 and
+            1. Set the pie chart as a donut chart. Set the value to 0.6 or number
+            in [0 ,1] to enable it.
+          max: null
+          min: null
+          name: innerRadius
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: number
+        - auto_generate: null
+          default: 600
+          form: form
+          human_description:
+            en_US: Set the width of chart, default is 600.
+            ja_JP: Set the width of chart, default is 600.
+            pt_BR: Set the width of chart, default is 600.
+            zh_Hans: 请设置图表宽度，默认值为 600。
+          label:
+            en_US: width
+            ja_JP: width
+            pt_BR: width
+            zh_Hans: 宽
+          llm_description: Set the width of chart, default is 600.
+          max: null
+          min: null
+          name: width
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: number
+        - auto_generate: null
+          default: 400
+          form: form
+          human_description:
+            en_US: Set the height of chart, default is 400.
+            ja_JP: Set the height of chart, default is 400.
+            pt_BR: Set the height of chart, default is 400.
+            zh_Hans: 请设置图表高度，默认值为 400。
+          label:
+            en_US: height
+            ja_JP: height
+            pt_BR: height
+            zh_Hans: 高
+          llm_description: Set the height of chart, default is 400.
+          max: null
+          min: null
+          name: height
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: number
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: Set the title of chart.
+            ja_JP: Set the title of chart.
+            pt_BR: Set the title of chart.
+            zh_Hans: 请设置图表名称。
+          label:
+            en_US: title
+            ja_JP: title
+            pt_BR: title
+            zh_Hans: 图表名称
+          llm_description: Set the title of chart.
+          max: null
+          min: null
+          name: title
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: default
+          form: form
+          human_description:
+            en_US: Set the theme of chart.
+            ja_JP: Set the theme of chart.
+            pt_BR: Set the theme of chart.
+            zh_Hans: 请设置图表主题。
+          label:
+            en_US: theme
+            ja_JP: theme
+            pt_BR: theme
+            zh_Hans: 图表主题
+          llm_description: Set the theme of chart.
+          max: null
+          min: null
+          name: theme
+          options:
+          - icon: ''
+            label:
+              en_US: default
+              ja_JP: default
+              pt_BR: default
+              zh_Hans: 默认主题
+            value: default
+          - icon: ''
+            label:
+              en_US: academy
+              ja_JP: academy
+              pt_BR: academy
+              zh_Hans: 学术主题
+            value: academy
+          - icon: ''
+            label:
+              en_US: dark
+              ja_JP: dark
+              pt_BR: dark
+              zh_Hans: 暗黑主题
+            value: dark
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: select
+        - auto_generate: null
+          default: null
+          form: form
+          human_description:
+            en_US: Set the style of chart, such as, { "backgroundColor":"transparent","palette":["#8459fc","#ff89bd","#1677ff","#00c2ff","#ff9a00","#f2cc2e","#7587dc","#bd80fa"],
+              "texture":"rough" }.
+            ja_JP: Set the style of chart, such as, { "backgroundColor":"transparent","palette":["#8459fc","#ff89bd","#1677ff","#00c2ff","#ff9a00","#f2cc2e","#7587dc","#bd80fa"],
+              "texture":"rough" }.
+            pt_BR: Set the style of chart, such as, { "backgroundColor":"transparent","palette":["#8459fc","#ff89bd","#1677ff","#00c2ff","#ff9a00","#f2cc2e","#7587dc","#bd80fa"],
+              "texture":"rough" }.
+            zh_Hans: 请设置图表样式，例如，{ "backgroundColor":"transparent", "palette":["#8459fc","#ff89bd","#1677ff","#00c2ff","#ff9a00","#f2cc2e","#7587dc","#bd80fa"],
+              "texture":"rough" }。
+          label:
+            en_US: style
+            ja_JP: style
+            pt_BR: style
+            zh_Hans: 图表样式
+          llm_description: Set the style of chart, such as, { "backgroundColor":"transparent","palette":["#8459fc","#ff89bd","#1677ff","#00c2ff","#ff9a00","#f2cc2e","#7587dc","#bd80fa"],
+            "texture":"rough" }.
+          max: null
+          min: null
+          name: style
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: string
+        params:
+          data: ''
+          height: ''
+          innerRadius: ''
+          style: ''
+          theme: ''
+          title: ''
+          width: ''
+        plugin_id: antv/visualization
+        plugin_unique_identifier: antv/visualization:0.2.0@798a255e7bf02e93b8a5717be235b833482be58daab1c64c79c954281da14b9c
+        provider_icon: /console/api/workspaces/current/plugin/icon?tenant_id=58e291a1-822b-41ce-b156-256a267a8e77&filename=0845c09f38c8d07ea4250bb588697f25bfe7d35fc590ceb8aa50425a715bb062.svg
+        provider_id: antv/visualization/visualization
+        provider_name: antv/visualization/visualization
+        provider_type: builtin
+        selected: false
+        title: 生成饼图
+        tool_configurations:
+          height:
+            type: constant
+            value: 400
+          style:
+            type: mixed
+            value: null
+          theme:
+            type: constant
+            value: default
+          width:
+            type: constant
+            value: 600
+        tool_description: 生成一个饼图来展示各部分的比例，例如市场占有率和预算分配。
+        tool_label: 生成饼图
+        tool_name: generate_pie_chart
+        tool_node_version: '2'
+        tool_parameters:
+          data:
+            type: mixed
+            value: '{{#1780796287769.pie#}}'
+          innerRadius:
+            type: constant
+            value: 0
+          title:
+            type: mixed
+            value: null
+        type: tool
+      height: 166
+      id: '1780796396738'
+      position:
+        x: 4134.724440753611
+        y: 655.7150541406002
+      positionAbsolute:
+        x: 4134.724440753611
+        y: 655.7150541406002
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        is_team_authorization: true
+        paramSchemas:
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: Data of column chart, such as, [{ "category":"北京", "value":825,
+              "group":"油车" }].
+            ja_JP: Data of column chart, such as, [{ "category":"北京", "value":825,
+              "group":"油车" }].
+            pt_BR: Data of column chart, such as, [{ "category":"北京", "value":825,
+              "group":"油车" }].
+            zh_Hans: 柱状图数据， 例如，[{ "category":"北京", "value":825, "group":"油车" }]。
+          label:
+            en_US: data of column chart
+            ja_JP: data of column chart
+            pt_BR: data of column chart
+            zh_Hans: 柱状图数据
+          llm_description: Data of column chart, such as, [{ "category":"北京", "value":825,
+            "group":"油车" }].
+          max: null
+          min: null
+          name: data
+          options: []
+          placeholder: null
+          precision: null
+          required: true
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: false
+          form: llm
+          human_description:
+            en_US: Whether stacking is enabled. When enabled, area charts require
+              a 'group' field in the data.
+            ja_JP: Whether stacking is enabled. When enabled, area charts require
+              a 'group' field in the data.
+            pt_BR: Whether stacking is enabled. When enabled, area charts require
+              a 'group' field in the data..
+            zh_Hans: 是否开启柱状图叠加，当 stack 为 true， data 数据中 必须有 'group' 字段。
+          label:
+            en_US: stack
+            ja_JP: stack
+            pt_BR: stack
+            zh_Hans: 柱状图叠加
+          llm_description: Whether stacking is enabled. When enabled, area charts
+            require a 'group' field in the data.
+          max: null
+          min: null
+          name: stack
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: boolean
+        - auto_generate: null
+          default: false
+          form: llm
+          human_description:
+            en_US: Whether grouping is enabled. When enabled, column charts require
+              a 'group' field in the data. When `group` is true, `stack` should be
+              false.
+            ja_JP: Whether grouping is enabled. When enabled, column charts require
+              a 'group' field in the data. When `group` is true, `stack` should be
+              false.
+            pt_BR: Whether grouping is enabled. When enabled, column charts require
+              a 'group' field in the data. When `group` is true, `stack` should be
+              false.
+            zh_Hans: 是否开启柱状图分组，当 group 为 true，data 数据中 必须有 'group' 字段。
+          label:
+            en_US: group
+            ja_JP: group
+            pt_BR: group
+            zh_Hans: 柱状图分组
+          llm_description: Whether grouping is enabled. When enabled, column charts
+            require a 'group' field in the data. When `group` is true, `stack` should
+            be false.
+          max: null
+          min: null
+          name: group
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: boolean
+        - auto_generate: null
+          default: 600
+          form: form
+          human_description:
+            en_US: Set the width of chart, default is 600.
+            ja_JP: Set the width of chart, default is 600.
+            pt_BR: Set the width of chart, default is 600.
+            zh_Hans: 请设置图表宽度， 默认值为 600。
+          label:
+            en_US: width
+            ja_JP: width
+            pt_BR: width
+            zh_Hans: 宽
+          llm_description: Set the width of chart, default is 600.
+          max: null
+          min: null
+          name: width
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: number
+        - auto_generate: null
+          default: 400
+          form: form
+          human_description:
+            en_US: Set the height of chart, default is 400.
+            ja_JP: Set the height of chart, default is 400.
+            pt_BR: Set the height of chart, default is 400.
+            zh_Hans: 请设置图表高度，默认值为 400。
+          label:
+            en_US: height
+            ja_JP: height
+            pt_BR: height
+            zh_Hans: 高
+          llm_description: Set the height of chart, default is 400.
+          max: null
+          min: null
+          name: height
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: number
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: Set the title of chart.
+            ja_JP: Set the title of chart.
+            pt_BR: Set the title of chart.
+            zh_Hans: 请设置图表名称。
+          label:
+            en_US: title
+            ja_JP: title
+            pt_BR: title
+            zh_Hans: 图表名称
+          llm_description: Set the title of chart.
+          max: null
+          min: null
+          name: title
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: Set the axisXTitle of chart.
+            ja_JP: Set the axisXTitle of chart.
+            pt_BR: Set the axisXTitle of chart.
+            zh_Hans: 请设置图表 X 轴名称。
+          label:
+            en_US: axisXTitle
+            ja_JP: axisXTitle
+            pt_BR: axisXTitle
+            zh_Hans: 图表 X 轴名称
+          llm_description: Set the axisXTitle of chart.
+          max: null
+          min: null
+          name: axisXTitle
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: Set the axisYTitle of chart.
+            ja_JP: Set the axisYTitle of chart.
+            pt_BR: Set the axisYTitle of chart.
+            zh_Hans: 请设置图表 Y 轴名称。
+          label:
+            en_US: axisYTitle
+            ja_JP: axisYTitle
+            pt_BR: axisYTitle
+            zh_Hans: 图表 Y 轴名称
+          llm_description: Set the axisYTitle of chart.
+          max: null
+          min: null
+          name: axisYTitle
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: default
+          form: form
+          human_description:
+            en_US: Set the theme of chart.
+            ja_JP: Set the theme of chart.
+            pt_BR: Set the theme of chart.
+            zh_Hans: 请设置图表主题。
+          label:
+            en_US: theme
+            ja_JP: theme
+            pt_BR: theme
+            zh_Hans: 图表主题
+          llm_description: Set the theme of chart.
+          max: null
+          min: null
+          name: theme
+          options:
+          - icon: ''
+            label:
+              en_US: default
+              ja_JP: default
+              pt_BR: default
+              zh_Hans: 默认主题
+            value: default
+          - icon: ''
+            label:
+              en_US: academy
+              ja_JP: academy
+              pt_BR: academy
+              zh_Hans: 学术主题
+            value: academy
+          - icon: ''
+            label:
+              en_US: dark
+              ja_JP: dark
+              pt_BR: dark
+              zh_Hans: 暗黑主题
+            value: dark
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: select
+        - auto_generate: null
+          default: null
+          form: form
+          human_description:
+            en_US: Set the style of chart, such as, { "backgroundColor":"transparent",
+              "palette":["#8459fc","#ff89bd","#1677ff","#00c2ff","#ff9a00","#f2cc2e","#7587dc","#bd80fa"],
+              "texture":"rough" }.
+            ja_JP: Set the style of chart, such as, { "backgroundColor":"transparent",
+              "palette":["#8459fc","#ff89bd","#1677ff","#00c2ff","#ff9a00","#f2cc2e","#7587dc","#bd80fa"],
+              "texture":"rough" }.
+            pt_BR: Set the style of chart, such as, { "backgroundColor":"transparent",
+              "palette":["#8459fc","#ff89bd","#1677ff","#00c2ff","#ff9a00","#f2cc2e","#7587dc","#bd80fa"],
+              "texture":"rough" }.
+            zh_Hans: 请设置图表样式，例如，{ "backgroundColor":"transparent", "palette":["#8459fc","#ff89bd","#1677ff","#00c2ff","#ff9a00","#f2cc2e","#7587dc","#bd80fa"],
+              "texture":"rough" }。
+          label:
+            en_US: style
+            ja_JP: style
+            pt_BR: style
+            zh_Hans: 图表样式
+          llm_description: Set the style of chart, such as, { "backgroundColor":"transparent",
+            "palette":["#8459fc","#ff89bd","#1677ff","#00c2ff","#ff9a00","#f2cc2e","#7587dc","#bd80fa"],
+            "texture":"rough" }.
+          max: null
+          min: null
+          name: style
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: string
+        params:
+          axisXTitle: ''
+          axisYTitle: ''
+          data: ''
+          group: ''
+          height: ''
+          stack: ''
+          style: ''
+          theme: ''
+          title: ''
+          width: ''
+        plugin_id: antv/visualization
+        plugin_unique_identifier: antv/visualization:0.2.0@798a255e7bf02e93b8a5717be235b833482be58daab1c64c79c954281da14b9c
+        provider_icon: /console/api/workspaces/current/plugin/icon?tenant_id=58e291a1-822b-41ce-b156-256a267a8e77&filename=0845c09f38c8d07ea4250bb588697f25bfe7d35fc590ceb8aa50425a715bb062.svg
+        provider_id: antv/visualization/visualization
+        provider_name: antv/visualization/visualization
+        provider_type: builtin
+        selected: false
+        title: 生成柱状图
+        tool_configurations:
+          height:
+            type: constant
+            value: 400
+          style:
+            type: mixed
+            value: null
+          theme:
+            type: constant
+            value: default
+          width:
+            type: constant
+            value: 600
+        tool_description: 生成一个柱状图，对不同类别进行数值比较，例如，当数值接近时，由于人眼对于高度的感知优于其他视觉元素（如面积、角度等），因此，使用柱状图更加合适。
+        tool_label: 生成柱状图
+        tool_name: generate_column_chart
+        tool_node_version: '2'
+        tool_parameters:
+          axisXTitle:
+            type: mixed
+            value: null
+          axisYTitle:
+            type: mixed
+            value: null
+          data:
+            type: mixed
+            value: '{{#1780796290780.bar#}}'
+          group:
+            type: constant
+            value: false
+          stack:
+            type: constant
+            value: false
+          title:
+            type: mixed
+            value: null
+        type: tool
+      height: 166
+      id: '1780796410274'
+      position:
+        x: 4168.7314142778305
+        y: 844.6426848307076
+      positionAbsolute:
+        x: 4168.7314142778305
+        y: 844.6426848307076
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        is_team_authorization: true
+        paramSchemas:
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: Data of line chart, such as, [{ "time":"2018", "value":99.9 }].
+            ja_JP: Data of line chart, such as, [{ "time":"2018", "value":99.9 }].
+            pt_BR: Data of line chart, such as, [{ "time":"2018", "value":99.9 }].
+            zh_Hans: 折线图数据，例如，[{ "time":"2018", "value":99.9 }]。
+          label:
+            en_US: data of line chart
+            ja_JP: data of line chart
+            pt_BR: data of line chart
+            zh_Hans: 折线图数据
+          llm_description: Data of line chart, such as, [{ "time":"2018", "value":99.9
+            }].
+          max: null
+          min: null
+          name: data
+          options: []
+          placeholder: null
+          precision: null
+          required: true
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: 600
+          form: form
+          human_description:
+            en_US: Set the width of chart, default is 600.
+            ja_JP: Set the width of chart, default is 600.
+            pt_BR: Set the width of chart, default is 600.
+            zh_Hans: 请设置图表宽度，默认值为 600。
+          label:
+            en_US: width
+            ja_JP: width
+            pt_BR: width
+            zh_Hans: 宽
+          llm_description: Set the width of chart, default is 600.
+          max: null
+          min: null
+          name: width
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: number
+        - auto_generate: null
+          default: 400
+          form: form
+          human_description:
+            en_US: Set the height of chart, default is 400.
+            ja_JP: Set the height of chart, default is 400.
+            pt_BR: Set the height of chart, default is 400.
+            zh_Hans: 请设置图表高度，默认值为 400。
+          label:
+            en_US: height
+            ja_JP: height
+            pt_BR: height
+            zh_Hans: 高
+          llm_description: Set the height of chart, default is 400.
+          max: null
+          min: null
+          name: height
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: number
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: Set the title of chart.
+            ja_JP: Set the title of chart.
+            pt_BR: Set the title of chart.
+            zh_Hans: 请设置图表名称。
+          label:
+            en_US: title
+            ja_JP: title
+            pt_BR: title
+            zh_Hans: 图表名称
+          llm_description: Set the title of chart.
+          max: null
+          min: null
+          name: title
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: Set the axisXTitle of chart.
+            ja_JP: Set the axisXTitle of chart.
+            pt_BR: Set the axisXTitle of chart.
+            zh_Hans: 请设置图表 X 轴名称。
+          label:
+            en_US: axisXTitle
+            ja_JP: axisXTitle
+            pt_BR: axisXTitle
+            zh_Hans: 图表 X 轴名称
+          llm_description: Set the axisXTitle of chart.
+          max: null
+          min: null
+          name: axisXTitle
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: Set the axisYTitle of chart.
+            ja_JP: Set the axisYTitle of chart.
+            pt_BR: Set the axisYTitle of chart.
+            zh_Hans: 请设置图表 Y 轴名称。
+          label:
+            en_US: axisYTitle
+            ja_JP: axisYTitle
+            pt_BR: axisYTitle
+            zh_Hans: 图表 Y 轴名称
+          llm_description: Set the axisYTitle of chart.
+          max: null
+          min: null
+          name: axisYTitle
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: default
+          form: form
+          human_description:
+            en_US: Set the theme of chart.
+            ja_JP: Set the theme of chart.
+            pt_BR: Set the theme of chart.
+            zh_Hans: 请设置图表主题。
+          label:
+            en_US: theme
+            ja_JP: theme
+            pt_BR: theme
+            zh_Hans: 图表主题
+          llm_description: Set the theme of chart.
+          max: null
+          min: null
+          name: theme
+          options:
+          - icon: ''
+            label:
+              en_US: default
+              ja_JP: default
+              pt_BR: default
+              zh_Hans: 默认主题
+            value: default
+          - icon: ''
+            label:
+              en_US: academy
+              ja_JP: academy
+              pt_BR: academy
+              zh_Hans: 学术主题
+            value: academy
+          - icon: ''
+            label:
+              en_US: dark
+              ja_JP: dark
+              pt_BR: dark
+              zh_Hans: 黑暗主题
+            value: dark
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: select
+        - auto_generate: null
+          default: null
+          form: form
+          human_description:
+            en_US: Set the style of chart, such as, { "backgroundColor":"transparent",
+              "palette":["#8459fc","#ff89bd","#1677ff","#00c2ff","#ff9a00","#f2cc2e","#7587dc","#bd80fa"],
+              "texture":"rough", "lineWidth":2, startAtZero:true }.
+            ja_JP: Set the style of chart, such as, { "backgroundColor":"transparent",
+              "palette":["#8459fc","#ff89bd","#1677ff","#00c2ff","#ff9a00","#f2cc2e","#7587dc","#bd80fa"],
+              "texture":"rough", "lineWidth":2, startAtZero:true }.
+            pt_BR: Set the style of chart, such as, { "backgroundColor":"transparent",
+              "palette":["#8459fc","#ff89bd","#1677ff","#00c2ff","#ff9a00","#f2cc2e","#7587dc","#bd80fa"],
+              "texture":"rough", "lineWidth":2, startAtZero:true }.
+            zh_Hans: 请设置图表样式，例如，{ "backgroundColor":"transparent", "palette":["#8459fc","#ff89bd","#1677ff","#00c2ff","#ff9a00","#f2cc2e","#7587dc","#bd80fa"],
+              "texture":"rough", "lineWidth":2, startAtZero:true }。
+          label:
+            en_US: style
+            ja_JP: style
+            pt_BR: style
+            zh_Hans: 图表样式
+          llm_description: Set the style of chart, such as, { "backgroundColor":"transparent",
+            "palette":["#8459fc","#ff89bd","#1677ff","#00c2ff","#ff9a00","#f2cc2e","#7587dc","#bd80fa"],
+            "texture":"rough", "lineWidth":2, startAtZero:true }.
+          max: null
+          min: null
+          name: style
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: string
+        params:
+          axisXTitle: ''
+          axisYTitle: ''
+          data: ''
+          height: ''
+          style: ''
+          theme: ''
+          title: ''
+          width: ''
+        plugin_id: antv/visualization
+        plugin_unique_identifier: antv/visualization:0.2.0@798a255e7bf02e93b8a5717be235b833482be58daab1c64c79c954281da14b9c
+        provider_icon: /console/api/workspaces/current/plugin/icon?tenant_id=58e291a1-822b-41ce-b156-256a267a8e77&filename=0845c09f38c8d07ea4250bb588697f25bfe7d35fc590ceb8aa50425a715bb062.svg
+        provider_id: antv/visualization/visualization
+        provider_name: antv/visualization/visualization
+        provider_type: builtin
+        selected: false
+        title: 生成折线图
+        tool_configurations:
+          height:
+            type: constant
+            value: 400
+          style:
+            type: mixed
+            value: null
+          theme:
+            type: constant
+            value: default
+          width:
+            type: constant
+            value: 600
+        tool_description: 生成一个折线图来显示随时间变化的趋势，例如，2000 年到 2016 年苹果电脑销量与苹果公司利润比例的变化。
+        tool_label: 生成折线图
+        tool_name: generate_line_chart
+        tool_node_version: '2'
+        tool_parameters:
+          axisXTitle:
+            type: mixed
+            value: null
+          axisYTitle:
+            type: mixed
+            value: null
+          data:
+            type: mixed
+            value: '{{#1780796295250.line#}}'
+          title:
+            type: mixed
+            value: null
+        type: tool
+      height: 166
+      id: '1780796436327'
+      position:
+        x: 4149.83865120882
+        y: 1103.0550514385263
+      positionAbsolute:
+        x: 4149.83865120882
+        y: 1103.0550514385263
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        answer: '{{#1780795933629.text#}}{{#1780796410274.text#}}{{#1780796436327.text#}}{{#1780796396738.text#}}'
+        selected: false
+        title: 直接回复 6
+        type: answer
+        variables: []
+      height: 158
+      id: '1780796553755'
+      position:
+        x: 4713.695617977854
+        y: 487.06274952410615
+      positionAbsolute:
+        x: 4713.695617977854
+        y: 487.06274952410615
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        instruction: 从{{#1780582028718.text#}}提取 monthly_budget（当月预算）、total_spent（当月总支出）两个数值，按照指定JSON结构输出，仅输出合法JSON，禁止额外文字、解释、换行、注释。
+        model:
+          completion_params:
+            enable_thinking: false
+            temperature: 0.3
+          mode: chat
+          name: Pro/moonshotai/Kimi-K2.5
+          provider: langgenius/siliconflow/siliconflow
+        parameters:
+        - description: 只要预算+总支出 实现对比
+          name: budget1spent2
+          required: false
+          type: string
+        query:
+        - '1780582028718'
+        - text
+        reasoning_mode: prompt
+        selected: false
+        title: 参数提取器 8
+        type: parameter-extractor
+        vision:
+          enabled: false
+      height: 88
+      id: '1780800754690'
+      position:
+        x: 2791.935275289022
+        y: 11.244809565625374
+      positionAbsolute:
+        x: 2791.935275289022
+        y: 11.244809565625374
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        instruction: 从输入文本中提取可执行的SQL语句，仅输出SQL，不要任何思考、解释、符号。
+        model:
+          completion_params:
+            temperature: 0.2
+          mode: chat
+          name: Pro/moonshotai/Kimi-K2.5
+          provider: langgenius/siliconflow/siliconflow
+        parameters:
+        - description: 实现记账功能的sql语句
+          name: sql
+          required: false
+          type: array[string]
+        query:
+        - '1780493106315'
+        - text
+        reasoning_mode: prompt
+        selected: false
+        title: 参数提取器 8
+        type: parameter-extractor
+        vision:
+          enabled: false
+      height: 88
+      id: '1780912338283'
+      position:
+        x: 1550.3581363912488
+        y: -7.103178442064035
+      positionAbsolute:
+        x: 1550.3581363912488
+        y: -7.103178442064035
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - sys
+          - query
+        model:
+          completion_params:
+            max_tokens: 2401
+            temperature: 0.3
+            top_p: 0.3
+          mode: chat
+          name: Qwen3-235B-A22B-Instruct-2507
+          provider: langgenius/gitee_ai/gitee_ai
+        prompt_template:
+        - role: system
+          text: '读取输入{{#sys.query#}}中的预算数字，判断是新增还是修改预算，输出对应话术：
+
+            1. 无对应旧预算：输出「已经成功设置本月预算XX元」
+
+            2. 已有旧预算：输出「已经成功修改本月预算为XX元」
+
+            仅输出最终话术，无额外内容。'
+        selected: false
+        title: LLM 16
+        type: llm
+        vision:
+          enabled: false
+      height: 94
+      id: '1780913258500'
+      position:
+        x: 1310.9529831747132
+        y: 643.8339456577744
+      positionAbsolute:
+        x: 1310.9529831747132
+        y: 643.8339456577744
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        is_team_authorization: true
+        paramSchemas:
+        - auto_generate: null
+          default: '%Y-%m-%d %H:%M:%S'
+          form: form
+          human_description:
+            en_US: Time format in strftime standard.
+            ja_JP: Time format in strftime standard.
+            pt_BR: Time format in strftime standard.
+            zh_Hans: strftime 标准的时间格式。
+          label:
+            en_US: Format
+            ja_JP: Format
+            pt_BR: Format
+            zh_Hans: 格式
+          llm_description: null
+          max: null
+          min: null
+          name: format
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: UTC
+          form: form
+          human_description:
+            en_US: Timezone
+            ja_JP: Timezone
+            pt_BR: Timezone
+            zh_Hans: 时区
+          label:
+            en_US: Timezone
+            ja_JP: Timezone
+            pt_BR: Timezone
+            zh_Hans: 时区
+          llm_description: null
+          max: null
+          min: null
+          name: timezone
+          options:
+          - icon: null
+            label:
+              en_US: UTC
+              ja_JP: UTC
+              pt_BR: UTC
+              zh_Hans: UTC
+            value: UTC
+          - icon: null
+            label:
+              en_US: America/New_York
+              ja_JP: America/New_York
+              pt_BR: America/New_York
+              zh_Hans: 美洲/纽约
+            value: America/New_York
+          - icon: null
+            label:
+              en_US: America/Los_Angeles
+              ja_JP: America/Los_Angeles
+              pt_BR: America/Los_Angeles
+              zh_Hans: 美洲/洛杉矶
+            value: America/Los_Angeles
+          - icon: null
+            label:
+              en_US: America/Chicago
+              ja_JP: America/Chicago
+              pt_BR: America/Chicago
+              zh_Hans: 美洲/芝加哥
+            value: America/Chicago
+          - icon: null
+            label:
+              en_US: America/Sao_Paulo
+              ja_JP: America/Sao_Paulo
+              pt_BR: América/São Paulo
+              zh_Hans: 美洲/圣保罗
+            value: America/Sao_Paulo
+          - icon: null
+            label:
+              en_US: Asia/Shanghai
+              ja_JP: Asia/Shanghai
+              pt_BR: Asia/Shanghai
+              zh_Hans: 亚洲/上海
+            value: Asia/Shanghai
+          - icon: null
+            label:
+              en_US: Asia/Ho_Chi_Minh
+              ja_JP: Asia/Ho_Chi_Minh
+              pt_BR: Ásia/Ho Chi Minh
+              zh_Hans: 亚洲/胡志明市
+            value: Asia/Ho_Chi_Minh
+          - icon: null
+            label:
+              en_US: Asia/Tokyo
+              ja_JP: Asia/Tokyo
+              pt_BR: Asia/Tokyo
+              zh_Hans: 亚洲/东京
+            value: Asia/Tokyo
+          - icon: null
+            label:
+              en_US: Asia/Dubai
+              ja_JP: Asia/Dubai
+              pt_BR: Asia/Dubai
+              zh_Hans: 亚洲/迪拜
+            value: Asia/Dubai
+          - icon: null
+            label:
+              en_US: Asia/Kolkata
+              ja_JP: Asia/Kolkata
+              pt_BR: Asia/Kolkata
+              zh_Hans: 亚洲/加尔各答
+            value: Asia/Kolkata
+          - icon: null
+            label:
+              en_US: Asia/Seoul
+              ja_JP: Asia/Seoul
+              pt_BR: Asia/Seoul
+              zh_Hans: 亚洲/首尔
+            value: Asia/Seoul
+          - icon: null
+            label:
+              en_US: Asia/Singapore
+              ja_JP: Asia/Singapore
+              pt_BR: Asia/Singapore
+              zh_Hans: 亚洲/新加坡
+            value: Asia/Singapore
+          - icon: null
+            label:
+              en_US: Europe/London
+              ja_JP: Europe/London
+              pt_BR: Europe/London
+              zh_Hans: 欧洲/伦敦
+            value: Europe/London
+          - icon: null
+            label:
+              en_US: Europe/Berlin
+              ja_JP: Europe/Berlin
+              pt_BR: Europe/Berlin
+              zh_Hans: 欧洲/柏林
+            value: Europe/Berlin
+          - icon: null
+            label:
+              en_US: Europe/Moscow
+              ja_JP: Europe/Moscow
+              pt_BR: Europe/Moscow
+              zh_Hans: 欧洲/莫斯科
+            value: Europe/Moscow
+          - icon: null
+            label:
+              en_US: Australia/Sydney
+              ja_JP: Australia/Sydney
+              pt_BR: Australia/Sydney
+              zh_Hans: 澳大利亚/悉尼
+            value: Australia/Sydney
+          - icon: null
+            label:
+              en_US: Pacific/Auckland
+              ja_JP: Pacific/Auckland
+              pt_BR: Pacific/Auckland
+              zh_Hans: 太平洋/奥克兰
+            value: Pacific/Auckland
+          - icon: null
+            label:
+              en_US: Africa/Cairo
+              ja_JP: Africa/Cairo
+              pt_BR: Africa/Cairo
+              zh_Hans: 非洲/开罗
+            value: Africa/Cairo
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: select
+        params:
+          format: ''
+          timezone: ''
+        plugin_id: null
+        plugin_unique_identifier: ''
+        provider_icon: /console/api/workspaces/current/tool-provider/builtin/time/icon
+        provider_id: time
+        provider_name: time
+        provider_type: builtin
+        selected: false
+        title: 获取当前时间
+        tool_configurations:
+          format:
+            type: mixed
+            value: '%Y-%m'
+          timezone:
+            type: constant
+            value: Asia/Shanghai
+        tool_description: 一个用于获取当前时间的工具。
+        tool_label: 获取当前时间
+        tool_name: current_time
+        tool_node_version: '2'
+        tool_parameters: {}
+        type: tool
+      height: 114
+      id: '1780916130781'
+      position:
+        x: 1324.4551490284073
+        y: 257.7115673784905
+      positionAbsolute:
+        x: 1324.4551490284073
+        y: 257.7115673784905
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - sys
+          - query
+        model:
+          completion_params: {}
+          mode: chat
+          name: Pro/moonshotai/Kimi-K2.5
+          provider: langgenius/siliconflow/siliconflow
+        prompt_template:
+        - id: 6b521f94-817e-400b-a2db-2af7ce32915c
+          role: system
+          text: "你是一个消费账单意图解析助手。\n你的任务是理解用户的查询意图，不需要匹配关键词。\n\n用户问题：{{#sys.query#}}\n\
+            当前基准月份：{{#1780916130781.text#}}\n\n请判断：\n1. 用户是否需要**对比多个月份的消费**？\n   -\
+            \ 是 → query_type = compare\n   - 否 → query_type = single\n\n2. 自动生成需要统计的月份：\n\
+            \   - 若为对比需求 → 返回 [上月, 当前月]\n   - 若为单月需求 → 返回 [当前月]\n\n3. 分析用户关注的类型：\n\
+            \   - 关注饮品/奶茶/咖啡/零食 → drink_snack\n   - 关注刚需/非必要/娱乐消费 → rigid_vs_fun\n\
+            \   - 关注预算是否足够/下月调整 → budget_adjust\n   - 通用建议/无特定指向 → normal\n\n输出要求：\n\
+            - 只输出标准 JSON，无任何多余文字\n- 格式：{\"query_type\":\"\",\"target_months\":[\"\"\
+            ],\"focus_type\":\"\"}"
+        selected: false
+        title: LLM 17
+        type: llm
+        vision:
+          enabled: false
+      height: 88
+      id: '1780917179108'
+      position:
+        x: 1790.076148173811
+        y: 291.97798099478086
+      positionAbsolute:
+        x: 1790.076148173811
+        y: 291.97798099478086
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    viewport:
+      x: -589.0595508707215
+      y: 182.15046848057938
+      zoom: 0.43527528164806223
+  rag_pipeline_variables: []
