@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>创建记账用户</title>
+<style>
+  body { max-width: 400px; margin: 30px auto; padding: 0 20px; font-family: sans-serif; }
+  input { width: 100%; padding: 10px; margin: 10px 0; box-sizing: border-box; font-size: 16px; }
+  button { width: 100%; padding: 12px; background: #42b983; color: white; border: none; border-radius: 4px; font-size: 16px; cursor: pointer; }
+</style>
+</head>
+<body>
+  <h2>创建记账用户</h2>
+  <input id="username" placeholder="输入用户名">
+  <button id="createBtn">创建并开始记账</button>
+
+<script>
+const usernameInput = document.getElementById('username');
+const createBtn = document.getElementById('createBtn');
+createBtn.addEventListener('click', go);
+usernameInput.addEventListener('keydown', e => e.key === 'Enter' && go());
+
+function go() {
+  const name = usernameInput.value.trim();
+  if (!name) { alert("请输入用户名"); return; }
+
+  // 生成 唯一、固定、永久的用户 ID
+  const userId = "user-" + btoa(encodeURIComponent(name));
+  
+  // 存入本地
+  localStorage.setItem("uid", userId);
+  localStorage.setItem("uname", name);
+
+  location.href = "index.html";
+}
+</script>
+</body>
+</html>

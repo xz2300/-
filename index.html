@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>记账助手</title>
+    <style>
+      body { margin: 0; font-family: sans-serif; }
+      .header { padding: 10px; background: #f0f0f0; text-align: center; }
+      iframe { width: 100%; height: calc(100vh - 40px); border: none; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        欢迎回来，<span id="showName"></span>！
+        <button onclick="logout()" style="float:right;">退出</button>
+    </div>
+    <iframe id="chatFrame"></iframe>
+
+<script>
+// 读取当前登录用户（唯一ID）
+const userId = localStorage.getItem('uid');
+const username = localStorage.getItem('uname');
+
+if (!userId) {
+    alert('请先创建用户');
+    location.href = 'register.html';
+} else {
+    document.getElementById('showName').innerText = username;
+
+    // ✅ 关键：把当前用户的唯一ID传给 Dify
+    const difyUrl = "http://localhost/chatbot/gM7nRV599z2XT21Y?user=" + userId;
+    
+    document.getElementById('chatFrame').src = difyUrl;
+}
+
+function logout() {
+    localStorage.clear();
+    location.href = 'register.html';
+}
+</script>
+</body>
+</html>
